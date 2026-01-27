@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+$theme-colors: (
+  background: #fef4f0,
+  background-50: #fef1ed,
+  background-100: #feefea,
+  background-200: #feede7,
+  background-300: #feebe4,
+  background-400: #fee9e1,
+  background-500: #e4d1ca,
+  background-600: #cbbab4,
+  background-700: #b1a39d,
+  background-800: #988b87,
+  background-900: #7f7470,
+  foreground: #2e1e0f,
+  foreground-50: #81786f,
+  foreground-100: #6c6157,
+  foreground-200: #574a3e,
+  foreground-300: #423426,
+  foreground-400: #2e1e0f,
+  foreground-500: #291b0d,
+  foreground-600: #24180c,
+  foreground-700: #20150a,
+  foreground-800: #1b1209,
+  foreground-900: #170f07,
+  primary: #007cbe,
+  primary-50: #66b0d8,
+  primary-100: #4ca3d1,
+  primary-200: #3296cb,
+  primary-300: #1989c4,
+  primary-400: #007cbe,
+  primary-500: #006fab,
+  primary-600: #006398,
+  primary-700: #005685,
+  primary-800: #004a72,
+  primary-900: #003e5f,
+  secondary: #68edc6,
+  secondary-50: #a4f4dc,
+  secondary-100: #95f2d7,
+  secondary-200: #86f0d1,
+  secondary-300: #77eecb,
+  secondary-400: #68edc6,
+  secondary-500: #5dd5b2,
+  secondary-600: #53bd9e,
+  secondary-700: #48a58a,
+  secondary-800: #3e8e76,
+  secondary-900: #347663,
+  accent: #007cbe,
+  accent-50: #66b0d8,
+  accent-100: #4ca3d1,
+  accent-200: #3296cb,
+  accent-300: #1989c4,
+  accent-400: #007cbe,
+  accent-500: #006fab,
+  accent-600: #006398,
+  accent-700: #005685,
+  accent-800: #004a72,
+  accent-900: #003e5f,
+);
+
+$theme-colors-dark: (
+  background: #2e1e0f,
+  background-50: #81786f,
+  background-100: #6c6157,
+  background-200: #574a3e,
+  background-300: #423426,
+  background-400: #2e1e0f,
+  background-500: #291b0d,
+  background-600: #24180c,
+  background-700: #20150a,
+  background-800: #1b1209,
+  background-900: #170f07,
+  foreground: #fee9e1,
+  foreground-50: #fef1ed,
+  foreground-100: #feefea,
+  foreground-200: #feede7,
+  foreground-300: #feebe4,
+  foreground-400: #fee9e1,
+  foreground-500: #e4d1ca,
+  foreground-600: #cbbab4,
+  foreground-700: #b1a39d,
+  foreground-800: #988b87,
+  foreground-900: #7f7470,
+  primary: #52ffb8,
+  primary-50: #97ffd4,
+  primary-100: #85ffcd,
+  primary-200: #74ffc6,
+  primary-300: #63ffbf,
+  primary-400: #52ffb8,
+  primary-500: #49e5a5,
+  primary-600: #41cc93,
+  primary-700: #39b280,
+  primary-800: #31996e,
+  primary-900: #297f5c,
+  secondary: #738290,
+  secondary-50: #abb4bc,
+  secondary100: #9da7b1,
+  secondary-200: #8f9ba6,
+  secondary-300: #818e9b,
+  secondary-400: #738290,
+  secondary-500: #677581,
+  secondary-600: #5c6873,
+  secondary-700: #505b64,
+  secondary-800: #454e56,
+  secondary-900: #394148,
+  accent: #b8b42d,
+  accent-50: #d4d281,
+  accent-100: #cdca6c,
+  accent-200: #c6c356,
+  accent-300: #bfbb42,
+  accent-400: #b8b42d,
+  accent-500: #a5a228,
+  accent-600: #939024,
+  accent-700: #807d1f,
+  accent-800: #6e6c1b,
+  accent-900: #5c5a16,
+);
+
+:root {
+  @each $name, $color in $theme-colors {
+    --#{$name}: #{$color};
+  }
+}
+
+[data-theme="dark"] {
+  @each $name, $color in $theme-colors-dark {
+    --#{$name}: #{$color};
+  }
+}
+
+@each $name, $color in $theme-colors {
+  .text-#{$name} {
+    color: var(--#{$name});
+  }
+
+  .bg-#{$name} {
+    background-color: var(--#{$name});
+  }
+
+  .border-#{$name} {
+    border-color: var(--#{$name});
+  }
+
+  .outline-#{$name} {
+    outline-color: var(--#{$name});
+  }
+
+  .stroke-#{$name} {
+    stroke: var(--#{$name});
+  }
+}
+
+.btn {
+  @apply cursor-pointer px-6 py-2 text-base rounded tracking-wider font-semibold;
+
+  &-primary {
+    border: 2px solid var(--primary);
+    background-color: var(--primary);
+    color: var(--background);
+
+    &:hover {
+      background-color: transparent;
+      color: var(--primary);
+    }
+  }
+
+  &-small {
+    @apply text-sm px-4 py-1;
+  }
+
+  &-medium {
+    @apply text-base px-6 py-2;
+  }
+
+  &-large {
+    @apply text-lg px-8 py-3;
+  }
+}
+
+*,
+*::before,
+*::after {
+  /* Creating animations for dark mode */
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
+}
+
+// if prefer the theme of the system/browser
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
