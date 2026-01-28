@@ -1,10 +1,7 @@
-import ThemeChanger from "./ThemeChanger";
-
 export default function Home() {
   return (
-    <div>
+    <main>
       <h1 className="text-2xl">testing</h1>
-      <ThemeChanger />
-    </div>
+    </main>
   );
 }

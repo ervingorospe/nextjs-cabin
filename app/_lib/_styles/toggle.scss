@@ -1,0 +1,32 @@
+.toggle-icon-track {
+  position: relative;
+  border-radius: 9999px;
+  background-color: var(--track-off);
+  transition: background-color 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    background-color: var(--track-off);
+    border-radius: 50%;
+    padding: 2px 2px;
+    background-image: var(--toggle-icon);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    transform: translateY(-50%);
+    transition:
+      transform 0.3s ease,
+      background-color 0.3s ease;
+  }
+}
+
+.peer:checked + .toggle-icon-track {
+  background-color: var(--track-on);
+}
+
+.peer:checked + .toggle-icon-track::before {
+  background-color: var(--track-on);
+  transform: translate(2rem, -50%);
+}

@@ -177,6 +177,11 @@ $theme-colors-dark: (
   }
 }
 
+.container {
+  @apply p-6 mx-auto;
+  max-inline-size: 134rem;
+}
+
 *,
 *::before,
 *::after {

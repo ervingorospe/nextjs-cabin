@@ -21,7 +21,11 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/hooks/*": ["./hooks/*"]
+      "@/hooks/*": ["./app/_lib/hooks/*"],
+      "@/components/*": ["./app/components/*"],
+      "@/types/*": ["app/_lib/_types/*"],
+      "@/utils/*": ["app/_lib/_utils/*"],
+      "@/styles/*": ["app/_lib/_styles/*"]
     }
   },
   "include": [
