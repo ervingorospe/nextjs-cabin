@@ -14,8 +14,8 @@ interface Props extends SizeProps {
 }
 
 function Toggle({
-  trackOffColor = "var(--primary-100)",
-  trackOnColor = "var(--primary-600)",
+  trackOffColor = "var(--background-300)",
+  trackOnColor = "var(--background-400)",
   icon1 = null,
   icon2 = null,
   onClick,
