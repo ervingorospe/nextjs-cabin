@@ -1,16 +1,20 @@
 import React from "react";
-import { MethodProps, SizeProps, GenericProps } from "@/types/generic-type";
+import { SizeProps, GenericProps } from "@/app/_lib/_types/generic.type";
 import { cn } from "@/utils/styles";
-import { ButtonVariant, variants as btnVariants } from "@/types/button-types";
-import { Radius, radius as radiusType } from "@/types/radius-type";
-import { sizes } from "@/types/size-types";
-import { colors } from "@/types/color-types";
+import {
+  ButtonVariant,
+  variants as btnVariants,
+} from "@/app/_lib/_types/button.type";
+import { Radius, radius as radiusType } from "@/app/_lib/_types/radius.type";
+import { sizes } from "@/app/_lib/_types/size.type";
+import { colors } from "@/app/_lib/_types/color.type";
 import { getBgColor, getBorderColor, getTextColor } from "@/utils/styles";
 
-interface ButtonProps extends SizeProps, MethodProps, GenericProps {
+interface ButtonProps extends SizeProps, GenericProps {
   children: React.ReactNode;
   variant?: ButtonVariant;
   radius?: Radius;
+  ref?: React.RefObject<HTMLButtonElement>;
 }
 
 export default function Button({ children, ...rest }: ButtonProps) {

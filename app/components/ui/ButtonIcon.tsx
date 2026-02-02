@@ -1,5 +1,5 @@
 import { cn } from "@/utils/styles";
-import { GenericProps, MethodProps } from "@/types/generic-type";
+import { GenericProps, MethodProps } from "@/app/_lib/_types/generic.type";
 
 interface ButtonIconPorps extends GenericProps, MethodProps {}
 

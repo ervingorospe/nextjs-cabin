@@ -1,8 +1,9 @@
 "use client";
-import { convertSvgToURL } from "@/utils/converter";
-import "@/styles/toggle.scss";
-import { SizeProps } from "@/types/generic-type";
+import { convertSvgToURL } from "@/app/_lib/_utils/converter.utils";
+import "@/styles/toggle.style.scss";
+import { SizeProps } from "@/app/_lib/_types/generic.type";
 import { cn } from "@/utils/styles";
+import { sizes } from "@/app/_lib/_types/size.type";
 
 interface Props extends SizeProps {
   trackOffColor?: string;
@@ -53,7 +54,7 @@ function Toggle({
       <span
         className={cn(
           "toggle-icon-track h-[1rem]",
-          size === "sm"
+          size === sizes.SMALL
             ? "w-[3.5rem] before:w-[1.5rem] before:h-[1.5rem]"
             : size === "lg"
               ? "w-[4.1rem] before:w-[3rem] before:h-[3rem]"

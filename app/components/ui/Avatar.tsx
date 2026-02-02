@@ -1,11 +1,11 @@
 "use client";
 
 import { cn } from "@/utils/styles";
-import { SizeProps } from "@/types/generic-type";
-import { ImageProps } from "@/types/image-type";
+import { SizeProps } from "@/app/_lib/_types/generic.type";
+import { ImageProps } from "@/app/_lib/_types/image.type";
 import Image from "next/image";
-import { getInitials } from "@/utils/formatter";
-import { sizes } from "@/types/size-types";
+import { getInitials } from "@/app/_lib/_utils/formatter.utils";
+import { sizes } from "@/app/_lib/_types/size.type";
 
 interface AvatarProps extends SizeProps, ImageProps {
   name: string;

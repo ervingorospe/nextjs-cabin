@@ -6,4 +6,9 @@ interface ImageProps {
   className?: string;
 }
 
-export type { ImageProps };
+type ImageUploadType = {
+  file: File;
+  url: string;
+};
+
+export type { ImageProps, ImageUploadType };

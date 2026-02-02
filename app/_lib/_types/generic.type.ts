@@ -1,21 +1,21 @@
 import React from "react";
-import { ColorLevel, Colors } from "./color-types";
-import { Sizes } from "./size-types";
+import { ColorLevel, Colors } from "./color.type";
+import { Sizes } from "./size.type";
 
 interface SizeProps {
   size?: Sizes;
 }
 
 interface MethodProps {
-  onClick?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface GenericProps<TRef = unknown> {
+interface GenericProps {
+  onClick?: () => void;
   className?: string;
   color?: Colors;
   level?: ColorLevel;
   children?: React.ReactNode;
-  ref?: React.Ref<TRef>;
 }
 
 export type { SizeProps, MethodProps, GenericProps };

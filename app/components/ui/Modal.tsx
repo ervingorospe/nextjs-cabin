@@ -1,14 +1,19 @@
-import { GenericProps } from "@/types/generic-type";
+import { GenericProps } from "@/app/_lib/_types/generic.type";
 import ButtonIcon from "@/components/ui/ButtonIcon";
 import { useImperativeHandle, useState } from "react";
-import "@/styles/modal.scss";
+import "@/styles/modal.style.scss";
+import { ModalHandle } from "@/app/_lib/_types/modal.type";
 
-function Modal({ children, ref }: GenericProps) {
+interface ModalProps extends GenericProps {
+  ref: React.Ref<ModalHandle>;
+}
+
+function Modal({ children, ref }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useImperativeHandle(ref, () => ({
     setOpen() {
-      setIsOpen((val) => !val);
+      setIsOpen((val: boolean) => !val);
     },
   }));
 

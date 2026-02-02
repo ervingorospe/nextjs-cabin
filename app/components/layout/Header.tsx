@@ -2,7 +2,7 @@
 import Link from "next/link";
 import ThemeSwitch from "@/components/ui/ThemeSwitch";
 import Avatar from "@/components/ui/Avatar";
-import { sizes } from "@/types/size-types";
+import { sizes } from "@/app/_lib/_types/size.type";
 
 export default function Header() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import "@/styles/sidebar.scss";
+import "@/styles/sidebar.style.scss";
 import ChevronLeft from "@/components/ui/icons/ChevronLeft";
 import ChevronRight from "@/components/ui/icons/ChevronRight";
 import ButtonIcon from "@/components/ui/ButtonIcon";
