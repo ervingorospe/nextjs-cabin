@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 $theme-colors: (
-  background: #f9fafb,
+  background: #edf0f3,
   background-50: #f9fafb,
   background-100: #edf0f3,
   background-200: #e1e6eb,
@@ -57,7 +57,10 @@ $theme-colors: (
   accent-800: #59ff55,
   accent-900: #45ff42,
 
-  header: var(--background-100),
+  header: var(--background-50),
+  nav-color: var(--foreground-400),
+  nav-hover-color: var(--foreground-400),
+  transparent: transparent,
 );
 
 $theme-colors-dark: (
@@ -85,6 +88,8 @@ $theme-colors-dark: (
   foreground-900: #8fa2b4,
 
   header: var(--background-600),
+  nav-color: var(--foreground-900),
+  nav-hover-color: var(--background-500),
 );
 
 :root {
@@ -119,37 +124,46 @@ $theme-colors-dark: (
   .stroke-#{$name} {
     stroke: var(--#{$name});
   }
-}
 
-.btn {
-  @apply cursor-pointer px-6 py-2 text-base rounded tracking-wider font-semibold;
+  .stroke-#{$name} {
+    box-shadow: var(--#{$name});
+  }
 
-  &-primary {
-    border: 2px solid var(--primary);
-    background-color: var(--primary);
-    color: var(--background);
+  .fill-#{$name} {
+    fill: var(--#{$name});
+  }
 
+  .hover\:bg-#{$name} {
     &:hover {
-      background-color: transparent;
-      color: var(--primary);
+      background-color: var(--#{$name});
     }
   }
 
-  &-small {
+  .hover\:text-#{$name} {
+    &:hover {
+      color: var(--#{$name});
+    }
+  }
+}
+
+.btn {
+  @apply cursor-pointer px-6 py-2 tracking-wide font-semibold transition-all duration-300 ease-in-out;
+
+  &-sm {
     @apply text-sm px-4 py-1;
   }
 
-  &-medium {
+  &-md {
     @apply text-base px-6 py-2;
   }
 
-  &-large {
+  &-lg {
     @apply text-lg px-8 py-3;
   }
 }
 
 .container {
-  @apply p-6 mx-auto;
+  @apply m-0 mx-auto;
   max-inline-size: 134rem;
 }
 
@@ -159,7 +173,6 @@ $theme-colors-dark: (
   /* Creating animations for dark mode */
   transition:
     background-color 0.3s ease-in-out,
-    color 0.3s ease-in-out,
     border-color 0.3s ease-in-out;
 }
 

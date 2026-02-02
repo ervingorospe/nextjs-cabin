@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "@/components/layout/Header";
+import Sidebar from "@/components/layout/Sidebar";
 
 export default function AuthenticatedLayout({
   children,
@@ -7,9 +8,14 @@ export default function AuthenticatedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="relative container">
       <Header />
-      <main>{children}</main>
+      <div className="flex overflow-hidden">
+        <Sidebar />
+        <main className="w-full">
+          <div className="p-4 sm:p-8 md:p-12 w-full mx-auto">{children}</div>
+        </main>
+      </div>
     </div>
   );
 }

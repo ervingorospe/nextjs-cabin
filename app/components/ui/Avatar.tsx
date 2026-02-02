@@ -1,9 +1,11 @@
 "use client";
 
 import { cn } from "@/utils/styles";
-import { ImageProps, SizeProps } from "@/types/generic-type";
+import { SizeProps } from "@/types/generic-type";
+import { ImageProps } from "@/types/image-type";
 import Image from "next/image";
 import { getInitials } from "@/utils/formatter";
+import { sizes } from "@/types/size-types";
 
 interface AvatarProps extends SizeProps, ImageProps {
   name: string;
@@ -12,9 +14,9 @@ interface AvatarProps extends SizeProps, ImageProps {
 export default function Avatar({ ...rest }: AvatarProps) {
   const { name, image, size = "md", className } = rest;
   const sizeClass =
-    size === "lg"
+    size === sizes.LARGE
       ? "size-14 text-lg"
-      : size === "sm"
+      : size === sizes.SMALL
         ? "size-8 text-sm"
         : "size-12 text-md";
   const hoverClass =

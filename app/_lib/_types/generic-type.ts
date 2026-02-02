@@ -1,23 +1,21 @@
-interface SizeProps {
-  size?: "sm" | "md" | "lg";
-}
+import React from "react";
+import { ColorLevel, Colors } from "./color-types";
+import { Sizes } from "./size-types";
 
-interface ImageProps {
-  image?: string;
-  alt?: string;
-  width?: number;
-  height?: number;
-  className?: string;
+interface SizeProps {
+  size?: Sizes;
 }
 
 interface MethodProps {
   onClick?: () => void;
 }
 
-interface StyleProps {
+interface GenericProps<TRef = unknown> {
   className?: string;
-  color?: string;
-  level?: number;
+  color?: Colors;
+  level?: ColorLevel;
+  children?: React.ReactNode;
+  ref?: React.Ref<TRef>;
 }
 
-export type { SizeProps, MethodProps, StyleProps, ImageProps };
+export type { SizeProps, MethodProps, GenericProps };
