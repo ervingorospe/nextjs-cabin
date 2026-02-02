@@ -1,13 +1,11 @@
 import { cn } from "@/utils/styles";
-import { GenericProps, MethodProps } from "@/app/_lib/_types/generic.type";
-
-interface ButtonIconPorps extends GenericProps, MethodProps {}
+import { GenericProps } from "@/app/_lib/_types/generic.type";
 
 export default function ButtonIcon({
   children,
   className,
   ...rest
-}: ButtonIconPorps) {
+}: GenericProps) {
   return (
     <button className={cn("cursor-pointer", className)} {...rest}>
       {children}
