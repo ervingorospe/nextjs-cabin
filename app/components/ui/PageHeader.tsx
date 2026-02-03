@@ -1,10 +1,30 @@
 "use client";
 import React, { useRef } from "react";
+import dynamic from "next/dynamic";
 import Button from "@/components/ui/Button";
 import { variants as btnVariants } from "@/app/_lib/_types/button.type";
+import { ModalHandle } from "@/types/modal.type";
 
-import Modal from "@/components/ui/Modal";
-import { ModalHandle } from "@/app/_lib/_types/modal.type";
+const Modal = dynamic(
+  () => import("@/components/ui/Modal").then((m) => m.Modal),
+  {
+    ssr: false,
+  },
+);
+
+const ModalHead = dynamic(
+  () => import("@/components/ui/Modal").then((m) => m.Header),
+  {
+    ssr: false,
+  },
+);
+
+const ModalBody = dynamic(
+  () => import("@/components/ui/Modal").then((m) => m.Body),
+  {
+    ssr: false,
+  },
+);
 
 interface PageHeaderProps {
   children?: React.ReactNode;
@@ -29,7 +49,7 @@ function ModalHeader({
   ModalRender: React.ReactNode;
   ModalTitle: string;
 }) {
-  const modalRef = useRef<ModalHandle | null>(null);
+  const modalRef = useRef<ModalHandle>(null);
 
   return (
     <>
@@ -42,11 +62,11 @@ function ModalHeader({
       </Button>
 
       <Modal ref={modalRef}>
-        <Modal.Header
+        <ModalHead
           title={ModalTitle}
           onClose={() => modalRef.current?.setOpen()}
         />
-        <Modal.Body>{ModalRender}</Modal.Body>
+        <ModalBody>{ModalRender}</ModalBody>
       </Modal>
     </>
   );

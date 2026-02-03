@@ -1,6 +1,12 @@
 "use client";
 import React from "react";
-import { FormProvider, FieldValues, useFormContext } from "react-hook-form";
+import dynamic from "next/dynamic";
+import {
+  FormProvider,
+  FieldValues,
+  useFormContext,
+  Controller,
+} from "react-hook-form";
 import CircleMark from "@/components/ui/icons/CircleMark";
 import Tooltip from "@/components/ui/Tooltip";
 import PreviewImage from "@/components/ui/PreviewImage";
@@ -13,6 +19,27 @@ import type {
   UploadImagesProps,
   FormProps,
 } from "@/types/form.type";
+import "react-quill-new/dist/quill.snow.css";
+
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link"],
+  ],
+};
+
+const formats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "list",
+  "indent",
+  "link",
+];
 
 function Form<TInput extends FieldValues, TOutput extends FieldValues>({
   children,
@@ -49,22 +76,54 @@ const Row = React.memo(function Row({
 const FormInput = React.memo(function FormInput<T extends FieldValues>({
   label,
   name,
+  type,
+  placeholder,
   ...rest
 }: FormInputProps<T>) {
   const {
     register,
+    control,
     formState: { errors },
   } = useFormContext<T>();
   const error = errors?.[name]?.message as string | undefined;
 
+  let content = (
+    <input
+      {...register(name, { valueAsNumber: type === "number" })}
+      {...rest}
+      className="mt-1 p-2 border border-foreground rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-primary-200"
+    />
+  );
+
+  if (type === "richText") {
+    const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+
+    content = (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <div className="quill-container placeholder-white">
+            <ReactQuill
+              theme="snow"
+              value={field.value || ""}
+              onChange={field.onChange}
+              onBlur={field.onBlur}
+              placeholder={placeholder}
+              className="mt-1 rounded-md text-foreground"
+              modules={modules}
+              formats={formats}
+            />
+          </div>
+        )}
+      />
+    );
+  }
+
   return (
     <>
       <label>{label}</label>
-      <input
-        {...register(name, { valueAsNumber: rest.type === "number" })}
-        {...rest}
-        className="mt-1 p-2 border border-foreground rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-primary-200"
-      />
+      {content}
       {error && <ErrorMessage message={error} />}
     </>
   );

@@ -22,6 +22,7 @@ export interface FormInputProps<T extends FieldValues> extends Omit<
   label?: string;
   error?: string;
   name: Path<T>;
+  placeholder?: string;
 }
 
 export interface UploadFileProps extends React.FormHTMLAttributes<HTMLInputElement> {

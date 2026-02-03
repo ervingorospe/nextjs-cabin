@@ -60,7 +60,7 @@ $theme-colors: (
   header: var(--background-50),
   nav-color: var(--foreground-400),
   nav-hover-color: var(--foreground-400),
-  transparent: transparent,
+  transparent: "transparent",
 );
 
 $theme-colors-dark: (
@@ -169,6 +169,36 @@ $theme-colors-dark: (
 .container {
   @apply m-0 mx-auto;
   max-inline-size: 134rem;
+}
+
+.ql-container {
+  border-radius: 0 0 10px 10px !important;
+}
+
+.ql-toolbar {
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+.ql-picker-label {
+  color: var(--foreground) !important;
+  font-size: 14px;
+}
+
+.ql-editor {
+  color: var(--foreground) !important;
+  font-size: 14px;
+  min-height: 200px;
+}
+
+.ql-editor::before {
+  color: var(--foreground) !important;
+  opacity: 0.5 !important;
+}
+
+.ql-fill,
+.ql-stroke {
+  color: var(--foreground) !important;
+  stroke: var(--foreground) !important;
 }
 
 *,

@@ -27,6 +27,13 @@ export const roomField: FieldConfig[] = [
     type: "number",
     width: "Half",
   },
+  {
+    name: "details",
+    label: "More Details",
+    type: "richText",
+    width: "Full",
+    placeholder: "ex: 2 bedroom, 1 CR",
+  },
 ];
 
 export const roomSchema = z.object({
@@ -36,6 +43,7 @@ export const roomSchema = z.object({
     .max(50, "Maximum of 50 letters"),
   price: z.number("Provide a number only").default(0),
   discount: z.number("Provide a number only").default(0).optional(),
+  details: z.string().optional(),
 });
 
 export type RoomInput = z.input<typeof roomSchema>;

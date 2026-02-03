@@ -2,13 +2,13 @@ import { GenericProps } from "@/app/_lib/_types/generic.type";
 import ButtonIcon from "@/components/ui/ButtonIcon";
 import { useImperativeHandle, useState } from "react";
 import "@/styles/modal.style.scss";
-import { ModalHandle } from "@/app/_lib/_types/modal.type";
+import { ModalHandle } from "@/types/modal.type";
 
 interface ModalProps extends GenericProps {
   ref: React.Ref<ModalHandle>;
 }
 
-function Modal({ children, ref }: ModalProps) {
+export function Modal({ children, ref }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useImperativeHandle(ref, () => ({
@@ -25,7 +25,7 @@ function Modal({ children, ref }: ModalProps) {
       <div className="h-full w-full flex items-center justify-center">
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`modal bg-header w-[350px] md:w-[700px] max-w-[700px] p-4 md:p-6 rounded-md text-foreground ${!isOpen ? "hidden" : "block"}`}
+          className={`modal bg-header w-[350px] md:w-[700px] max-h-[700px] overflow-y-auto max-w-[700px] p-4 md:p-6 rounded-md text-foreground ${!isOpen ? "hidden" : "block"}`}
         >
           {children}
         </div>
@@ -34,7 +34,13 @@ function Modal({ children, ref }: ModalProps) {
   );
 }
 
-function Header({ title, onClose }: { title: string; onClose: () => void }) {
+export function Header({
+  title,
+  onClose,
+}: {
+  title: string;
+  onClose: () => void;
+}) {
   return (
     <div>
       <div className="flex justify-between items-center  text-xl md:text-2xl">
@@ -48,11 +54,11 @@ function Header({ title, onClose }: { title: string; onClose: () => void }) {
   );
 }
 
-function Body({ children }: GenericProps) {
+export function Body({ children }: GenericProps) {
   return <div>{children}</div>;
 }
 
-function Footer({ children }: GenericProps) {
+export function Footer({ children }: GenericProps) {
   return (
     <div>
       <hr className="my-4 border-foreground-900 dark:border-gray-700" />
@@ -60,9 +66,3 @@ function Footer({ children }: GenericProps) {
     </div>
   );
 }
-
-Modal.Header = Header;
-Modal.Body = Body;
-Modal.Footer = Footer;
-
-export default Modal;
