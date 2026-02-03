@@ -144,6 +144,10 @@ $theme-colors-dark: (
       color: var(--#{$name});
     }
   }
+
+  .focus\:outline-#{$name} {
+    outline-color: var(--#{$name});
+  }
 }
 
 .btn {

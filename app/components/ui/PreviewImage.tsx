@@ -8,7 +8,7 @@ interface PreviewImageProps {
   image: ImageUploadType;
 }
 
-export default function PreviewImage({
+const PreviewImage = React.memo(function PreviewImage({
   children,
   image,
   ...rest
@@ -25,4 +25,6 @@ export default function PreviewImage({
       {children}
     </div>
   );
-}
+});
+
+export default PreviewImage;

@@ -1,22 +1,74 @@
 "use client";
-import { useState } from "react";
-import { ImageUploadType } from "@/app/_lib/_types/image.type";
+import React from "react";
+import { FormProvider, FieldValues, useFormContext } from "react-hook-form";
 import CircleMark from "@/components/ui/icons/CircleMark";
 import Tooltip from "@/components/ui/Tooltip";
 import PreviewImage from "@/components/ui/PreviewImage";
-import { MethodProps } from "@/app/_lib/_types/generic.type";
+import ErrorMessage from "@/components/ui/ErrorMessage";
 import { uploadMultipleImage, removeImage } from "@/utils/image.utils";
+import { cn } from "@/app/_lib/_utils/styles";
+import type {
+  FormInputProps,
+  UploadFileProps,
+  UploadImagesProps,
+  FormProps,
+} from "@/types/form.type";
 
-function Form({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+function Form<TInput extends FieldValues, TOutput extends FieldValues>({
+  children,
+  methods,
+  onSubmit,
+  ...rest
+}: FormProps<TInput, TOutput>) {
+  return (
+    <FormProvider {...methods}>
+      <form
+        {...rest}
+        className="flex flex-wrap w-full gap-4"
+        onSubmit={methods.handleSubmit(onSubmit)} // Optional: makes usage cleaner
+      >
+        {children}
+      </form>
+    </FormProvider>
+  );
 }
 
-interface UploadFileProps extends MethodProps {
-  multiple: boolean;
-  accept?: string;
-  buttonText: string;
-  children?: React.ReactNode;
-}
+const Row = React.memo(function Row({
+  children,
+  width,
+}: {
+  children: React.ReactNode;
+  width: "Half" | "Full";
+}) {
+  const divWidth =
+    width === "Half" ? "min-w-full md:min-w-[calc(50%-0.5rem)]" : "w-full";
+
+  return <div className={cn("flex flex-col ", divWidth)}>{children}</div>;
+});
+
+const FormInput = React.memo(function FormInput<T extends FieldValues>({
+  label,
+  name,
+  ...rest
+}: FormInputProps<T>) {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<T>();
+  const error = errors?.[name]?.message as string | undefined;
+
+  return (
+    <>
+      <label>{label}</label>
+      <input
+        {...register(name, { valueAsNumber: rest.type === "number" })}
+        {...rest}
+        className="mt-1 p-2 border border-foreground rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-primary-200"
+      />
+      {error && <ErrorMessage message={error} />}
+    </>
+  );
+});
 
 function UploadFile({ children, buttonText, ...rest }: UploadFileProps) {
   return (
@@ -33,11 +85,12 @@ function UploadFile({ children, buttonText, ...rest }: UploadFileProps) {
   );
 }
 
-function UploadImages() {
-  const [images, setImages] = useState<ImageUploadType[]>([]);
-
+const UploadImages = React.memo(function UploadImages({
+  images,
+  setImages,
+}: UploadImagesProps) {
   return (
-    <div>
+    <div className="w-full">
       <div className="grid mb-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
         {images?.map((img, idx) => (
           <PreviewImage image={img} key={idx}>
@@ -52,6 +105,7 @@ function UploadImages() {
         ))}
       </div>
       <UploadFile
+        name="images"
         multiple={true}
         accept="image/*"
         buttonText="Upload Images"
@@ -65,9 +119,11 @@ function UploadImages() {
       </UploadFile>
     </div>
   );
-}
+});
 
 Form.UploadFile = UploadFile;
 Form.UploadImages = UploadImages;
+Form.Row = Row;
+Form.Input = FormInput;
 
 export default Form;

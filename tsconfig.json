@@ -26,7 +26,8 @@
       "@/types/*": ["app/_lib/_types/*"],
       "@/utils/*": ["app/_lib/_utils/*"],
       "@/styles/*": ["app/_lib/_styles/*"],
-      "@/data/*": ["app/_lib/_data/*"]
+      "@/data/*": ["app/_lib/_data/*"],
+      "@/schema/*": ["app/_lib/_schema/*"]
     }
   },
   "include": [

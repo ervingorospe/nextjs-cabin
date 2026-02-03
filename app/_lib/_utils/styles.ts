@@ -7,31 +7,31 @@ const cn = (...inputs: ClassValue[]) => {
 };
 
 type colorType = {
-  color: Colors;
+  colorType: Colors;
   level: ColorLevel | null;
 };
 
-const getColors = ({ color, level }: colorType) => {
-  const colorType: string = color ? color : "primary";
+const getColors = ({ colorType, level }: colorType) => {
+  const color: string = colorType ? colorType : "primary";
   const colorLevel: string = level ? `-${level}` : "";
 
-  return `${colorType}${colorLevel}`;
+  return `${color}${colorLevel}`;
 };
 
-const getBgColor = ({ color, level }: colorType) => {
-  const bgColor: string = getColors({ color, level });
+const getBgColor = ({ colorType, level }: colorType) => {
+  const bgColor: string = getColors({ colorType, level });
 
   return `bg-${bgColor}`;
 };
 
-const getBorderColor = ({ color, level }: colorType) => {
-  const borderColor: string = getColors({ color, level });
+const getBorderColor = ({ colorType, level }: colorType) => {
+  const borderColor: string = getColors({ colorType, level });
 
   return `border-${borderColor}`;
 };
 
-const getTextColor = ({ color, level }: colorType) => {
-  const textColor: string = getColors({ color, level });
+const getTextColor = ({ colorType, level }: colorType) => {
+  const textColor: string = getColors({ colorType, level });
 
   return `text-${textColor}`;
 };

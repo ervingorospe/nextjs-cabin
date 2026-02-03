@@ -4,18 +4,13 @@ import { Sizes } from "./size.type";
 
 interface SizeProps {
   size?: Sizes;
-}
-
-interface MethodProps {
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  colorType?: Colors;
+  level?: ColorLevel;
 }
 
 interface GenericProps {
-  onClick?: () => void;
   className?: string;
-  color?: Colors;
-  level?: ColorLevel;
   children?: React.ReactNode;
 }
 
-export type { SizeProps, MethodProps, GenericProps };
+export type { SizeProps, GenericProps };
