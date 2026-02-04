@@ -147,7 +147,7 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
 
   return (
     <>
-      <label>{label}</label>
+      <label className="font-semibold">{label}</label>
       {content}
       {error && <ErrorMessage message={error} />}
     </>
@@ -160,7 +160,7 @@ function UploadFile({ children, buttonText, ...rest }: UploadFileProps) {
       <input type="file" id="fileUpload" hidden {...rest} />
       <label
         htmlFor="fileUpload"
-        className="btn btn-sm bg-secondary border border-secondary hover:bg-transparent hover:text-secondary transition duration-300 ease-in-out"
+        className="btn btn-sm text-white bg-secondary border border-secondary hover:bg-transparent hover:text-secondary transition duration-300 ease-in-out"
       >
         {buttonText}
       </label>

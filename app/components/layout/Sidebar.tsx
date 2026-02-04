@@ -32,11 +32,11 @@ export default function Sidebar() {
                 className="border-b border-background-400 pb-4 last:border-b-0"
                 key={i}
               >
-                <label className="text-lg font-bold tracking-wider">
+                <h4 className="text-lg font-bold tracking-wider">
                   {nav.label}
-                </label>
+                </h4>
                 {nav.menu.length > 0 && (
-                  <ul className="grid font-semibold text-nav-color mt-2">
+                  <ul className="grid font-semibold text-foreground mt-2">
                     {nav.menu?.map((menu, idx) => (
                       <li key={idx}>
                         <Link href={menu.link}>

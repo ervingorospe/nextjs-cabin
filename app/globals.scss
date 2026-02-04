@@ -12,7 +12,7 @@ $theme-colors: (
   background-700: #a7b5c4,
   background-800: #9bacbc,
   background-900: #8fa2b4,
-  foreground: #111827,
+  foreground: #2f426b,
   foreground-50: #a406ad,
   foreground-100: #354a79,
   foreground-200: #2f426b,
@@ -58,9 +58,9 @@ $theme-colors: (
   accent-900: #45ff42,
 
   header: var(--background-50),
-  nav-color: var(--foreground-400),
   nav-hover-color: var(--foreground-400),
   transparent: "transparent",
+  heading: var(--foreground-700),
 );
 
 $theme-colors-dark: (
@@ -75,7 +75,7 @@ $theme-colors-dark: (
   background-700: #111827,
   background-800: #0b1019,
   background-900: #05070c,
-  foreground: #f9fafb,
+  foreground: #8fa2b4,
   foreground-50: #f9fafb,
   foreground-100: #edf0f3,
   foreground-200: #e1e6eb,
@@ -88,8 +88,8 @@ $theme-colors-dark: (
   foreground-900: #8fa2b4,
 
   header: var(--background-600),
-  nav-color: var(--foreground-900),
   nav-hover-color: var(--background-500),
+  heading: var(--foreground-100),
 );
 
 :root {
@@ -150,8 +150,16 @@ $theme-colors-dark: (
   }
 }
 
+h1,
+h2,
+h3,
+h4,
+th {
+  color: var(--heading);
+}
+
 .btn {
-  @apply min-w-[120px] text-center cursor-pointer rounded-md px-6 py-2 tracking-wide font-semibold transition-all duration-300 ease-in-out text-white;
+  @apply min-w-[120px] text-center cursor-pointer rounded-md px-6 py-2 tracking-wide font-semibold transition-all duration-300 ease-in-out;
 
   &-sm {
     @apply text-sm px-4 py-1;
@@ -217,3 +225,7 @@ $theme-colors-dark: (
     --foreground: #ededed;
   }
 } */
+
+body {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}

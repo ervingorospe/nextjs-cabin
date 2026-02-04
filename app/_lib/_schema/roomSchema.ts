@@ -18,6 +18,30 @@ export const roomField: FieldConfig[] = [
     maxLength: 25,
   },
   {
+    name: "bedroom",
+    label: "How many bedroom?",
+    type: "number",
+    width: "Half",
+  },
+  {
+    name: "cr",
+    label: "How many bathroom?",
+    type: "number",
+    width: "Half",
+  },
+  {
+    name: "adult",
+    label: "Adult Capacity",
+    type: "number",
+    width: "Half",
+  },
+  {
+    name: "child",
+    label: "Children Capacity",
+    type: "number",
+    width: "Half",
+  },
+  {
     name: "price",
     label: "Original Price",
     type: "number",
@@ -27,6 +51,18 @@ export const roomField: FieldConfig[] = [
     name: "discount",
     label: "Discount Percentage",
     type: "number",
+    width: "Half",
+  },
+  {
+    name: "discount_from",
+    label: "Discount Start",
+    type: "date",
+    width: "Half",
+  },
+  {
+    name: "discount_to",
+    label: "Discount End",
+    type: "date",
     width: "Half",
   },
   {
@@ -44,20 +80,56 @@ export const roomField: FieldConfig[] = [
     label: "More Details",
     type: "richText",
     width: "Full",
-    placeholder: "ex: 2 bedroom, 1 CR",
+    placeholder: "ex: with free wifi, with breakfast",
   },
 ];
 
-export const roomSchema = z.object({
-  name: z
-    .string("Provide a name")
-    .min(1, "Provide name")
-    .max(50, "Maximum of 50 letters"),
-  price: z.number("Provide a number only").default(0),
-  status: z.string().default("available"),
-  discount: z.number("Provide a number only").default(0).optional(),
-  details: z.string().optional(),
-});
+const today = new Date();
+today.setHours(23, 59, 59, 999);
+
+// Helper schema to handle empty strings from form inputs correctly
+const optionalDateSchema = z.preprocess(
+  (arg) => {
+    // If the input is an empty string, treat it as undefined (optional)
+    if (typeof arg === "string" && arg === "") return undefined;
+    return arg;
+  },
+  z.coerce
+    .date()
+    .optional()
+    .refine((date) => !date || date >= today, {
+      message: "Date must be today or later",
+    }),
+);
+
+export const roomSchema = z
+  .object({
+    name: z
+      .string("Provide a name")
+      .min(1, "Provide name")
+      .max(50, "Maximum of 50 letters"),
+    price: z.number("Provide a number only").default(0),
+    status: z.string().default("available"),
+    discount: z.number("Provide a number only").default(0).optional(),
+    details: z.string().optional(),
+    bedroom: z.number("Provide a number only").default(1),
+    cr: z.number("Provide a number only").optional(),
+    adult: z.number("Provide a number only").default(1),
+    child: z.number("Provide a number only").default(0).optional(),
+    discount_from: optionalDateSchema,
+    discount_to: optionalDateSchema,
+  })
+  .refine(
+    (data) => {
+      if (!data.discount_from || !data.discount_to) return true;
+
+      return data.discount_to > data.discount_from;
+    },
+    {
+      message: "End date must be after the start date",
+      path: ["discount_to"],
+    },
+  );
 
 export type RoomInput = z.input<typeof roomSchema>;
 export type RoomOutput = z.output<typeof roomSchema>;

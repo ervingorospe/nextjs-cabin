@@ -20,6 +20,13 @@ interface ButtonProps
   radius?: Radius;
 }
 
+/**
+ *
+ * text-white
+ * text-secondary
+ * text-primary
+ */
+
 export default function Button({ children, ...rest }: ButtonProps) {
   const {
     variant = btnVariants.SOLID,
@@ -48,11 +55,10 @@ export default function Button({ children, ...rest }: ButtonProps) {
   if (variant === btnVariants.OUTLINE) {
     const textColor = getTextColor({ color, level });
     const borderColor = getBorderColor({ color, level });
-    const textHoverColor = "text-white";
     const bgColor = getBgColor({ color, level });
 
-    defaultClass = `${textColor} border ${borderColor}`;
-    hoverClass = `hover:${textHoverColor} hover:${bgColor}`;
+    defaultClass = `${textColor} border ${borderColor} ${textColor}`;
+    hoverClass = `hover:!text-white hover:${bgColor}`;
   }
 
   if (variant === btnVariants.TEXT) {
@@ -70,8 +76,8 @@ export default function Button({ children, ...rest }: ButtonProps) {
         "btn",
         defaultClass,
         hoverClass,
-        radiusClass,
         sizeClass,
+        radiusClass,
         className,
       )}
     >

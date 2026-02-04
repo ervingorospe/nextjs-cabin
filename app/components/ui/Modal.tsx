@@ -20,6 +20,8 @@ export function Modal({ children, ref }: ModalProps) {
   return (
     <div
       onClick={() => setIsOpen((val) => !val)}
+      role="dialog"
+      aria-modal="true"
       className={`backrop bg-black/10 backdrop-blur-[4px] top-0 left-0  w-[100%] h-[100%] z-100 ${isOpen ? "fixed" : "hidden"}`}
     >
       <div className="h-full w-full flex items-center justify-center">
@@ -42,7 +44,7 @@ export function Header({
   onClose: () => void;
 }) {
   return (
-    <div className="sticky top-0 left-0 bg-header p-4 md:p-6">
+    <div className="sticky top-0 left-0 bg-header p-4 md:p-6 !pb-2">
       <div className="flex justify-between items-center  text-xl md:text-2xl">
         <h3 className="tracking-wider font-bold">{title}</h3>
         <ButtonIcon onClick={onClose}>
