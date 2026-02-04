@@ -15,6 +15,11 @@ export interface FormProps<
   onSubmit: SubmitHandler<TOutput>; // Handler receives the Output
 }
 
+export type OptionsProps = {
+  label: string;
+  value: string | number;
+};
+
 export interface FormInputProps<T extends FieldValues> extends Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   "name"
@@ -23,6 +28,7 @@ export interface FormInputProps<T extends FieldValues> extends Omit<
   error?: string;
   name: Path<T>;
   placeholder?: string;
+  options?: OptionsProps[];
 }
 
 export interface UploadFileProps extends React.FormHTMLAttributes<HTMLInputElement> {

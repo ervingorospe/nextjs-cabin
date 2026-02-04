@@ -14,7 +14,7 @@ interface ButtonProps
   extends
     SizeProps,
     GenericProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
   children: React.ReactNode;
   variant?: ButtonVariant;
   radius?: Radius;
@@ -25,7 +25,7 @@ export default function Button({ children, ...rest }: ButtonProps) {
     variant = btnVariants.SOLID,
     radius = radiusType.MEDIUM,
     size = sizes.MEDIUM,
-    colorType = colors.PRIMARY,
+    color = colors.PRIMARY,
     level = null,
     className,
   } = rest;
@@ -37,26 +37,26 @@ export default function Button({ children, ...rest }: ButtonProps) {
 
   if (variant === btnVariants.SOLID) {
     const textColor = "text-white";
-    const borderColor = getBorderColor({ colorType, level });
-    const textHoverColor = getTextColor({ colorType, level });
-    const bgColor = getBgColor({ colorType, level });
+    const borderColor = getBorderColor({ color, level });
+    const textHoverColor = getTextColor({ color, level });
+    const bgColor = getBgColor({ color, level });
 
     defaultClass = `${bgColor} ${textColor} border ${borderColor}`;
     hoverClass = `hover:${textHoverColor} hover:bg-transparent`;
   }
 
   if (variant === btnVariants.OUTLINE) {
-    const textColor = getTextColor({ colorType, level });
-    const borderColor = getBorderColor({ colorType, level });
+    const textColor = getTextColor({ color, level });
+    const borderColor = getBorderColor({ color, level });
     const textHoverColor = "text-white";
-    const bgColor = getBgColor({ colorType, level });
+    const bgColor = getBgColor({ color, level });
 
     defaultClass = `${textColor} border ${borderColor}`;
     hoverClass = `hover:${textHoverColor} hover:${bgColor}`;
   }
 
   if (variant === btnVariants.TEXT) {
-    const textColor = getTextColor({ colorType, level });
+    const textColor = getTextColor({ color, level });
     const textHoverColor = "text-foreground";
 
     defaultClass = `${textColor}`;

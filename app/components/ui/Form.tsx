@@ -21,6 +21,8 @@ import type {
 } from "@/types/form.type";
 import "react-quill-new/dist/quill.snow.css";
 
+const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+
 const modules = {
   toolbar: [
     [{ header: [1, 2, false] }],
@@ -78,6 +80,7 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
   name,
   type,
   placeholder,
+  options,
   ...rest
 }: FormInputProps<T>) {
   const {
@@ -89,15 +92,37 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
 
   let content = (
     <input
+      type={type}
       {...register(name, { valueAsNumber: type === "number" })}
       {...rest}
       className="mt-1 p-2 border border-foreground rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-primary-200"
     />
   );
 
-  if (type === "richText") {
-    const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
+  if (type === "select") {
+    content = (
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <select
+            value={field.value || ""}
+            onChange={field.onChange}
+            onBlur={field.onBlur}
+            className="mt-1 bg-header w-full p-2 border border-foreground rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-primary-200"
+          >
+            {options?.map((option) => (
+              <option value={option.value} key={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        )}
+      />
+    );
+  }
 
+  if (type === "richText") {
     content = (
       <Controller
         name={name}
@@ -135,7 +160,7 @@ function UploadFile({ children, buttonText, ...rest }: UploadFileProps) {
       <input type="file" id="fileUpload" hidden {...rest} />
       <label
         htmlFor="fileUpload"
-        className="btn bg-secondary border border-secondary hover:bg-transparent hover:text-secondary transition duration-300 ease-in-out"
+        className="btn btn-sm bg-secondary border border-secondary hover:bg-transparent hover:text-secondary transition duration-300 ease-in-out"
       >
         {buttonText}
       </label>

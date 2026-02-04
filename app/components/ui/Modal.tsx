@@ -25,7 +25,7 @@ export function Modal({ children, ref }: ModalProps) {
       <div className="h-full w-full flex items-center justify-center">
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`modal bg-header w-[350px] md:w-[700px] max-h-[700px] overflow-y-auto max-w-[700px] p-4 md:p-6 rounded-md text-foreground ${!isOpen ? "hidden" : "block"}`}
+          className={`modal bg-header w-[350px] md:w-[700px] max-h-[700px] overflow-y-auto max-w-[700px] rounded-md text-foreground ${!isOpen ? "hidden" : "block"}`}
         >
           {children}
         </div>
@@ -42,7 +42,7 @@ export function Header({
   onClose: () => void;
 }) {
   return (
-    <div>
+    <div className="sticky top-0 left-0 bg-header p-4 md:p-6">
       <div className="flex justify-between items-center  text-xl md:text-2xl">
         <h3 className="tracking-wider font-bold">{title}</h3>
         <ButtonIcon onClick={onClose}>
@@ -55,7 +55,7 @@ export function Header({
 }
 
 export function Body({ children }: GenericProps) {
-  return <div>{children}</div>;
+  return <div className="px-4 md:px-6 pb-12">{children}</div>;
 }
 
 export function Footer({ children }: GenericProps) {

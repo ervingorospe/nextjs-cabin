@@ -11,6 +11,8 @@ import {
 } from "@/schema/roomSchema";
 import Form from "@/components/ui/Form";
 import Button from "@/components/ui/Button";
+import { variants } from "@/types/button.type";
+import { colors } from "@/types/color.type";
 
 export default function RoomForm() {
   const [images, setImages] = useState<ImageUploadType[]>([]);
@@ -20,8 +22,16 @@ export default function RoomForm() {
     resolver: zodResolver(roomSchema),
   });
 
+  const { reset, clearErrors } = methods;
+
   const onSubmit: SubmitHandler<RoomOutput> = (data) => {
     console.log({ ...data, images });
+  };
+
+  const onClear = () => {
+    reset();
+    clearErrors();
+    setImages([]);
   };
 
   return (
@@ -34,7 +44,15 @@ export default function RoomForm() {
 
       <Form.UploadImages images={images} setImages={setImages} />
 
-      <div className="flex w-full justify-end">
+      <div className="flex w-full justify-end gap-2">
+        <Button
+          type="button"
+          onClick={onClear}
+          variant={variants.OUTLINE}
+          color={colors.SECONDARY}
+        >
+          Clear
+        </Button>
         <Button type="submit">Submit</Button>
       </div>
     </Form>

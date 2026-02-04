@@ -1,10 +1,12 @@
 import { z } from "zod";
+import { OptionsProps } from "@/types/form.type";
 
 interface FieldConfig extends React.InputHTMLAttributes<HTMLInputElement> {
   name: keyof RoomInput;
   label: string;
   width: "Full" | "Half"; // 👈 Match the Form.Row prop exactly
   type: string;
+  options?: OptionsProps[];
 }
 
 export const roomField: FieldConfig[] = [
@@ -28,6 +30,16 @@ export const roomField: FieldConfig[] = [
     width: "Half",
   },
   {
+    name: "status",
+    label: "Status",
+    type: "select",
+    width: "Full",
+    options: [
+      { label: "Available", value: "available" },
+      { label: "Not Available", value: "not available" },
+    ],
+  },
+  {
     name: "details",
     label: "More Details",
     type: "richText",
@@ -42,6 +54,7 @@ export const roomSchema = z.object({
     .min(1, "Provide name")
     .max(50, "Maximum of 50 letters"),
   price: z.number("Provide a number only").default(0),
+  status: z.string().default("available"),
   discount: z.number("Provide a number only").default(0).optional(),
   details: z.string().optional(),
 });

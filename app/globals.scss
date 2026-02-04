@@ -151,7 +151,7 @@ $theme-colors-dark: (
 }
 
 .btn {
-  @apply cursor-pointer rounded-md px-6 py-2 tracking-wide font-semibold transition-all duration-300 ease-in-out text-white;
+  @apply min-w-[120px] text-center cursor-pointer rounded-md px-6 py-2 tracking-wide font-semibold transition-all duration-300 ease-in-out text-white;
 
   &-sm {
     @apply text-sm px-4 py-1;

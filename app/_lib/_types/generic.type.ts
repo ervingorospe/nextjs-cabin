@@ -4,7 +4,7 @@ import { Sizes } from "./size.type";
 
 interface SizeProps {
   size?: Sizes;
-  colorType?: Colors;
+  color?: Colors;
   level?: ColorLevel;
 }
 

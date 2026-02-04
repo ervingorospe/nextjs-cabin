@@ -6,32 +6,32 @@ const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
 
-type colorType = {
-  colorType: Colors;
+type ColorType = {
+  color: Colors;
   level: ColorLevel | null;
 };
 
-const getColors = ({ colorType, level }: colorType) => {
-  const color: string = colorType ? colorType : "primary";
+const getColors = ({ color, level }: ColorType) => {
+  const colorType: string = color ? color : "primary";
   const colorLevel: string = level ? `-${level}` : "";
 
-  return `${color}${colorLevel}`;
+  return `${colorType}${colorLevel}`;
 };
 
-const getBgColor = ({ colorType, level }: colorType) => {
-  const bgColor: string = getColors({ colorType, level });
+const getBgColor = ({ color, level }: ColorType) => {
+  const bgColor: string = getColors({ color, level });
 
   return `bg-${bgColor}`;
 };
 
-const getBorderColor = ({ colorType, level }: colorType) => {
-  const borderColor: string = getColors({ colorType, level });
+const getBorderColor = ({ color, level }: ColorType) => {
+  const borderColor: string = getColors({ color, level });
 
   return `border-${borderColor}`;
 };
 
-const getTextColor = ({ colorType, level }: colorType) => {
-  const textColor: string = getColors({ colorType, level });
+const getTextColor = ({ color, level }: ColorType) => {
+  const textColor: string = getColors({ color, level });
 
   return `text-${textColor}`;
 };
