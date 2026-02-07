@@ -5,8 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { ImageUploadType } from "@/types/image.type";
 import {
   roomSchema,
-  RoomInput,
-  RoomOutput,
+  CreateRoomDTO,
+  RoomDTO,
   roomField,
 } from "@/schema/roomSchema";
 import Form from "@/components/ui/Form";
@@ -14,17 +14,18 @@ import Button from "@/components/ui/Button";
 import { variants } from "@/types/button.type";
 import { colors } from "@/types/color.type";
 
-export default function RoomForm() {
+export default function RoomForm({ data }: { data: RoomDTO }) {
   const [images, setImages] = useState<ImageUploadType[]>([]);
 
-  const methods = useForm<RoomInput, unknown, RoomOutput>({
+  const methods = useForm<CreateRoomDTO>({
     mode: "onChange",
     resolver: zodResolver(roomSchema),
+    defaultValues: data as CreateRoomDTO,
   });
 
   const { reset, clearErrors } = methods;
 
-  const onSubmit: SubmitHandler<RoomOutput> = (data) => {
+  const onSubmit: SubmitHandler<CreateRoomDTO> = (data) => {
     console.log({ ...data, images });
   };
 

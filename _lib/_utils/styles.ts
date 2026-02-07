@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { ColorLevel, Colors } from "@/app/_lib/_types/color.type";
+import { ColorLevel, Colors } from "@/_lib/_types/color.type";
 
 const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));

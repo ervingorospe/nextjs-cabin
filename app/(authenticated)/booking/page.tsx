@@ -1,4 +1,4 @@
-import Header from "@/components/feature/Booking/Header";
+import Header from "@/features/booking/components/Header";
 
 export default function Booking() {
   return (

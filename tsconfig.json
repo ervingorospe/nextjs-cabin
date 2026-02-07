@@ -21,13 +21,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@/hooks/*": ["./app/_lib/hooks/*"],
-      "@/components/*": ["./app/components/*"],
-      "@/types/*": ["app/_lib/_types/*"],
-      "@/utils/*": ["app/_lib/_utils/*"],
-      "@/styles/*": ["app/_lib/_styles/*"],
-      "@/data/*": ["app/_lib/_data/*"],
-      "@/schema/*": ["app/_lib/_schema/*"]
+      "@/hooks/*": ["_lib/hooks/*"],
+      "@/components/*": ["components/*"],
+      "@/types/*": ["_lib/_types/*"],
+      "@/utils/*": ["_lib/_utils/*"],
+      "@/styles/*": ["_lib/_styles/*"],
+      "@/data/*": ["_lib/_data/*"],
+      "@/schema/*": ["_lib/_schema/*"],
+      "@/features/*": ["features/*"]
     }
   },
   "include": [

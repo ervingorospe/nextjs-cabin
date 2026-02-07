@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import dynamic from "next/dynamic";
 import Button from "@/components/ui/Button";
-import { variants as btnVariants } from "@/app/_lib/_types/button.type";
+import { variants as btnVariants } from "@/_lib/_types/button.type";
 import { ModalHandle } from "@/types/modal.type";
 
 const Modal = dynamic(

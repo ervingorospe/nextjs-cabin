@@ -12,7 +12,7 @@ import Tooltip from "@/components/ui/Tooltip";
 import PreviewImage from "@/components/ui/PreviewImage";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import { uploadMultipleImage, removeImage } from "@/utils/image.utils";
-import { cn } from "@/app/_lib/_utils/styles";
+import { cn } from "@/_lib/_utils/styles";
 import type {
   FormInputProps,
   UploadFileProps,

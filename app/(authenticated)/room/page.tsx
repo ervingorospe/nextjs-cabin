@@ -1,4 +1,4 @@
-import Header from "@/components/feature/Room/Header";
+import Header from "@/features/room/Header";
 
 export default function Room() {
   return (

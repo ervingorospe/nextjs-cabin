@@ -1,13 +1,13 @@
 import React from "react";
-import { SizeProps, GenericProps } from "@/app/_lib/_types/generic.type";
+import { SizeProps, GenericProps } from "@/_lib/_types/generic.type";
 import { cn } from "@/utils/styles";
 import {
   ButtonVariant,
   variants as btnVariants,
-} from "@/app/_lib/_types/button.type";
-import { Radius, radius as radiusType } from "@/app/_lib/_types/radius.type";
-import { sizes } from "@/app/_lib/_types/size.type";
-import { colors } from "@/app/_lib/_types/color.type";
+} from "@/_lib/_types/button.type";
+import { Radius, radius as radiusType } from "@/_lib/_types/radius.type";
+import { sizes } from "@/_lib/_types/size.type";
+import { colors } from "@/_lib/_types/color.type";
 import { getBgColor, getBorderColor, getTextColor } from "@/utils/styles";
 
 interface ButtonProps

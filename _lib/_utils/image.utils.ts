@@ -1,4 +1,4 @@
-import { ImageUploadType } from "@/app/_lib/_types/image.type";
+import { ImageUploadType } from "@/_lib/_types/image.type";
 
 export const uploadMultipleImage = (
   e: React.ChangeEvent<HTMLInputElement>,

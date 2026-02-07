@@ -129,7 +129,13 @@ export const roomSchema = z
       message: "End date must be after the start date",
       path: ["discount_to"],
     },
-  );
+  ).passthrough;
 
-export type RoomInput = z.input<typeof roomSchema>;
-export type RoomOutput = z.output<typeof roomSchema>;
+const roomResponseSchema = roomSchema.extend({
+  id: z.string().optional(),
+  createdAt: z.string().optional(),
+  updatedAt: z.string().optional(),
+});
+
+export type CreateRoomDTO = z.infer<typeof roomSchema>;
+export type RoomDTO = z.infer<typeof roomResponseSchema>;

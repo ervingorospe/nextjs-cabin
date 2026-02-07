@@ -1,9 +1,9 @@
 "use client";
-import { convertSvgToURL } from "@/app/_lib/_utils/converter.utils";
+import { convertSvgToURL } from "@/_lib/_utils/converter.utils";
 import "@/styles/toggle.style.scss";
-import { SizeProps } from "@/app/_lib/_types/generic.type";
+import { SizeProps } from "@/_lib/_types/generic.type";
 import { cn } from "@/utils/styles";
-import { sizes } from "@/app/_lib/_types/size.type";
+import { sizes } from "@/_lib/_types/size.type";
 
 interface Props extends SizeProps {
   trackOffColor?: string;

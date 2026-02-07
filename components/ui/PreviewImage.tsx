@@ -1,5 +1,5 @@
 "use client";
-import { ImageUploadType } from "@/app/_lib/_types/image.type";
+import { ImageUploadType } from "@/_lib/_types/image.type";
 import Image from "next/image";
 import React from "react";
 

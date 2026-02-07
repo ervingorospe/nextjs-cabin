@@ -1,4 +1,4 @@
-import { GenericProps } from "@/app/_lib/_types/generic.type";
+import { GenericProps } from "@/_lib/_types/generic.type";
 import ButtonIcon from "@/components/ui/ButtonIcon";
 import { useImperativeHandle, useState } from "react";
 import "@/styles/modal.style.scss";
