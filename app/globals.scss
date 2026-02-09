@@ -209,6 +209,10 @@ th {
   stroke: var(--foreground) !important;
 }
 
+.disabled {
+  opacity: 0.2;
+}
+
 *,
 *::before,
 *::after {

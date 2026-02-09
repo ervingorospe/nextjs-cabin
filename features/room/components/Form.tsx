@@ -2,30 +2,34 @@
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { ImageUploadType } from "@/types/image.type";
-import {
-  roomSchema,
-  CreateRoomDTO,
-  RoomDTO,
-  roomField,
-} from "@/schema/roomSchema";
+// components
 import Form from "@/components/ui/Form";
 import Button from "@/components/ui/Button";
+// types
+import { ImageUploadType } from "@/types/image.type";
+import {
+  RoomDTOInput,
+  RoomDTOOutput,
+  RoomDTO,
+  roomSchema,
+} from "@/features/room/DTO";
 import { variants } from "@/types/button.type";
 import { colors } from "@/types/color.type";
+import { FieldConfig } from "@/features/room/types";
+import { roomField } from "@/features/room/fields";
 
 export default function RoomForm({ data }: { data: RoomDTO }) {
   const [images, setImages] = useState<ImageUploadType[]>([]);
 
-  const methods = useForm<CreateRoomDTO>({
+  const methods = useForm<RoomDTOInput, unknown, RoomDTOOutput>({
     mode: "onChange",
     resolver: zodResolver(roomSchema),
-    defaultValues: data as CreateRoomDTO,
+    defaultValues: data as RoomDTOInput,
   });
 
   const { reset, clearErrors } = methods;
 
-  const onSubmit: SubmitHandler<CreateRoomDTO> = (data) => {
+  const onSubmit: SubmitHandler<RoomDTOOutput> = (data) => {
     console.log({ ...data, images });
   };
 
@@ -37,7 +41,7 @@ export default function RoomForm({ data }: { data: RoomDTO }) {
 
   return (
     <Form methods={methods} onSubmit={onSubmit}>
-      {roomField?.map((field) => (
+      {roomField?.map((field: FieldConfig) => (
         <Form.Row width={field.width} key={field.name}>
           <Form.Input {...field} />
         </Form.Row>

@@ -2,24 +2,10 @@
 
 import PageHeader from "@/components/ui/PageHeader";
 import Plus from "@/components/ui/icons/Plus";
-import Form from "@/features/room/Form";
-import { RoomInput } from "@/schema/roomSchema";
+import Form from "@/features/room/components/Form";
+import { defaultValue } from "@/features/room/fields";
 
 export default function Header() {
-  const roomDefaultValue: RoomInput = {
-    name: "",
-    price: 0,
-    status: "Available",
-    discount: 0,
-    details: "",
-    bedroom: 1,
-    cr: 0,
-    adult: 1,
-    child: 0,
-    discount_from: null,
-    discount_to: null,
-  };
-
   return (
     <div>
       <PageHeader title="Room">
@@ -30,7 +16,7 @@ export default function Header() {
               <span>Add Room</span>
             </>
           }
-          ModalRender={<Form data={roomDefaultValue} />}
+          ModalRender={<Form data={defaultValue} />}
           ModalTitle="New Room"
         />
       </PageHeader>
