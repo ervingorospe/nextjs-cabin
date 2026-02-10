@@ -11,7 +11,7 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="absolute md:relative">
+    <div className="absolute md:relative z-10">
       <div className="fixed h-[100%] bg-header shadow-lg">
         <ButtonIcon
           onClick={() => setIsOpen((open) => !open)}

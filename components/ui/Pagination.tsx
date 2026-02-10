@@ -4,12 +4,9 @@ import { notFound, useSearchParams } from "next/navigation";
 import LeftCaret from "@/components/ui/icons/LeftCaret";
 import RightCaret from "@/components/ui/icons/RightCaret";
 import ButtonIcon from "./ButtonIcon";
+import { usePageQuery } from "@/hooks/usePageQuery";
 
-const Pagination = React.memo(function Pagination({
-  count,
-}: {
-  count: number;
-}) {
+export default function Pagination({ count }: { count: number }) {
   const searchParams = useSearchParams();
   const pageParam = searchParams.get("page") ?? "1";
   const currentPage = Number(pageParam);
@@ -19,35 +16,37 @@ const Pagination = React.memo(function Pagination({
     notFound();
   }
 
-  const totalNext = Math.ceil(totalPages / 5);
+  let totalNext = Math.floor(totalPages / 5);
   const calculatedNext = Math.floor((currentPage - 1) / 5);
-  console.log((currentPage - 1) / 5);
+
+  if (totalPages % 5 === 0 && totalNext > 0) {
+    totalNext -= 1;
+  }
 
   return (
-    <div className="flex justify-between items-center">
-      <p>Total Results: {count} items</p>
+    <div className="flex-inline md:flex justify-between items-center gap-2">
+      <p className="text-right md:text-left">Total Results: {count} items</p>
       <PaginationTabs
-        totalPages={totalPages}
-        totalNext={totalNext}
+        nextCount={totalNext || totalPages < 5}
         calculatedNext={calculatedNext}
-        currentPage={currentPage}
-      />
+      >
+        <PageNumbers totalPages={totalPages} currentPage={currentPage} />
+      </PaginationTabs>
     </div>
   );
-});
+}
 
 function PaginationTabs({
-  totalPages,
-  totalNext,
+  nextCount,
   calculatedNext,
-  currentPage,
+  children,
 }: {
-  totalPages: number;
-  totalNext: number;
+  nextCount: number | boolean;
   calculatedNext: number;
-  currentPage: number;
+  children: React.ReactNode;
 }) {
   const [next, setNext] = useState<number>(calculatedNext);
+
   return (
     <div className="flex items-center justify-end gap-1 text-sm">
       <ButtonIcon onClick={() => setNext((n) => n - 1)} disabled={next < 1}>
@@ -62,33 +61,47 @@ function PaginationTabs({
             transform: `translateX(-${next * 100}%)`,
           }}
         >
-          {Array.from({ length: totalPages }, (_, i) => {
-            const pageNum = ++i;
-
-            return (
-              <ButtonIcon
-                onClick={() => {}}
-                className={`cursor-pointer py-1 w-10 shrink-0 text-center rounded-md border border-secondary ${currentPage === pageNum ? "bg-secondary text-white" : "hover:text-white hover:bg-secondary"}`}
-                key={i}
-                disabled={currentPage === pageNum}
-              >
-                {pageNum}
-              </ButtonIcon>
-            );
-          })}
+          {children}
         </div>
       </div>
 
       <ButtonIcon
         onClick={() => setNext((n) => n + 1)}
-        disabled={next === totalNext || totalPages < 5}
+        disabled={next === nextCount}
       >
         <RightCaret
-          className={`h-4 w-4 mr-1 ${next === totalNext || totalPages < 5 ? "disabled" : "text-secondary cursor-pointer hover:opacity-50"}`}
+          className={`h-4 w-4 mr-1 ${next === nextCount ? "disabled" : "text-secondary cursor-pointer hover:opacity-50"}`}
         />
       </ButtonIcon>
     </div>
   );
 }
 
-export default Pagination;
+const PageNumbers = React.memo(function PageNumbers({
+  totalPages,
+  currentPage,
+}: {
+  totalPages: number;
+  currentPage: number;
+}) {
+  const { setPage } = usePageQuery();
+
+  return (
+    <>
+      {Array.from({ length: totalPages }, (_, i) => {
+        const pageNum = i + 1;
+
+        return (
+          <ButtonIcon
+            onClick={() => setPage(pageNum)}
+            className={`cursor-pointer py-1 w-10 shrink-0 text-center rounded-md border border-secondary ${currentPage === pageNum ? "bg-secondary text-white" : "hover:text-white hover:bg-secondary"}`}
+            key={i}
+            disabled={currentPage === pageNum}
+          >
+            {pageNum}
+          </ButtonIcon>
+        );
+      })}
+    </>
+  );
+});
