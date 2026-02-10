@@ -10,7 +10,7 @@ export default function Pagination({ count }: { count: number }) {
   const searchParams = useSearchParams();
   const pageParam = searchParams.get("page") ?? "1";
   const currentPage = Number(pageParam);
-  const totalPages = Math.ceil(count / 10);
+  const totalPages = Math.ceil(count / 20);
 
   if (currentPage < 1 || currentPage > totalPages) {
     notFound();
