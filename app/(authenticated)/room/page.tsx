@@ -9,7 +9,7 @@ export default function Room() {
     <div>
       <Header />
       <div className="grid gap-2">
-        <Pagination count={499} />
+        <Pagination count={212} />
 
         <div
           id="room-table"
@@ -56,6 +56,8 @@ export default function Room() {
             </tbody>
           </table>
         </div>
+
+        <Pagination count={212} />
       </div>
     </div>
   );
