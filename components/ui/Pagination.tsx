@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { notFound, useSearchParams } from "next/navigation";
 import LeftCaret from "@/components/ui/icons/LeftCaret";
 import RightCaret from "@/components/ui/icons/RightCaret";
+import IconLayout from "@/components/ui/icons/IconLayout";
 import ButtonIcon from "./ButtonIcon";
-import { usePageQuery } from "@/hooks/usePageQuery";
+import usePageQuery from "@/hooks/usePageQuery";
 
 export default function Pagination({ count }: { count: number }) {
   const searchParams = useSearchParams();
@@ -50,9 +51,11 @@ function PaginationTabs({
   return (
     <div className="flex items-center justify-end gap-1 text-sm">
       <ButtonIcon onClick={() => setNext((n) => n - 1)} disabled={next < 1}>
-        <LeftCaret
+        <IconLayout
           className={`h-4 w-4 mr-1 ${next < 1 ? "disabled" : "text-secondary cursor-pointer hover:opacity-50"}`}
-        />
+        >
+          <LeftCaret />
+        </IconLayout>
       </ButtonIcon>
       <div className="max-w-[220px] overflow-hidden">
         <div
@@ -69,9 +72,11 @@ function PaginationTabs({
         onClick={() => setNext((n) => n + 1)}
         disabled={next === nextCount}
       >
-        <RightCaret
+        <IconLayout
           className={`h-4 w-4 mr-1 ${next === nextCount ? "disabled" : "text-secondary cursor-pointer hover:opacity-50"}`}
-        />
+        >
+          <RightCaret />
+        </IconLayout>
       </ButtonIcon>
     </div>
   );

@@ -10,7 +10,7 @@ const routes = [
     label: "Overview",
     menu: [
       {
-        icon: <Home className="h-5 w-5" />,
+        icon: <Home />,
         text: "Dashboard",
         link: "/dashboard",
       },
@@ -20,12 +20,12 @@ const routes = [
     label: "Operation",
     menu: [
       {
-        icon: <Calendar className="h-5 w-5" />,
+        icon: <Calendar />,
         text: "Booking",
         link: "/booking",
       },
       {
-        icon: <Building className="h-5 w-5" />,
+        icon: <Building />,
         text: "Room",
         link: "/room",
       },
@@ -35,12 +35,12 @@ const routes = [
     label: "Administration",
     menu: [
       {
-        icon: <User className="h-5 w-5" />,
+        icon: <User />,
         text: "Users",
         link: "/users",
       },
       {
-        icon: <ChartBar className="h-5 w-5" />,
+        icon: <ChartBar />,
         text: "Reports",
         link: "/reports",
       },
@@ -50,12 +50,12 @@ const routes = [
     label: "Settings",
     menu: [
       {
-        icon: <UserCircle className="h-5 w-5" />,
+        icon: <UserCircle />,
         text: "Profile",
         link: "/profile",
       },
       {
-        icon: <Building className="h-5 w-5" />,
+        icon: <Building />,
         text: "Hotel",
         link: "/hotel",
       },

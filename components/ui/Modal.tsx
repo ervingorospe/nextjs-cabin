@@ -1,3 +1,5 @@
+"use client";
+
 import { GenericProps } from "@/_lib/_types/generic.type";
 import ButtonIcon from "@/components/ui/ButtonIcon";
 import { useImperativeHandle, useState } from "react";

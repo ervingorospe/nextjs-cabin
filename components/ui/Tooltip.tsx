@@ -12,7 +12,7 @@ export default function Tooltip({
 
   return (
     <div
-      className="relative"
+      className="relative z-20"
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { SizeProps, GenericProps } from "@/_lib/_types/generic.type";
 import { cn } from "@/utils/styles";

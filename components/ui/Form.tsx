@@ -7,12 +7,13 @@ import {
   useFormContext,
   Controller,
 } from "react-hook-form";
+import IconLayout from "@/components/ui/icons/IconLayout";
 import CircleMark from "@/components/ui/icons/CircleMark";
 import Tooltip from "@/components/ui/Tooltip";
 import PreviewImage from "@/components/ui/PreviewImage";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import { uploadMultipleImage, removeImage } from "@/utils/image.utils";
-import { cn } from "@/_lib/_utils/styles";
+import { cn } from "@/utils/styles";
 import type {
   FormInputProps,
   UploadFileProps,
@@ -181,7 +182,9 @@ const UploadImages = React.memo(function UploadImages({
             <div className="absolute right-0 top-0">
               <Tooltip title="Remove">
                 <div onClick={() => setImages([...removeImage(images, idx)])}>
-                  <CircleMark className="h-6 w-6 cursor-pointer text-white hover:opacity-80" />
+                  <IconLayout className="h-6 w-6 cursor-pointer text-white hover:opacity-80">
+                    <CircleMark />
+                  </IconLayout>
                 </div>
               </Tooltip>
             </div>

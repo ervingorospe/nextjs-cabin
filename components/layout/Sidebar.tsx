@@ -3,6 +3,7 @@ import { useState } from "react";
 import "@/styles/sidebar.style.scss";
 import ChevronLeft from "@/components/ui/icons/ChevronLeft";
 import ChevronRight from "@/components/ui/icons/ChevronRight";
+import IconLayout from "@/components/ui/icons/IconLayout";
 import ButtonIcon from "@/components/ui/ButtonIcon";
 import routes from "@/data/routes";
 import Link from "next/link";
@@ -17,11 +18,9 @@ export default function Sidebar() {
           onClick={() => setIsOpen((open) => !open)}
           className="absolute rounded-md -right-6 top-30 py-2 bg-header z-20"
         >
-          {isOpen ? (
-            <ChevronLeft className="h-8 w-8" />
-          ) : (
-            <ChevronRight className="h-8 w-8" />
-          )}
+          <IconLayout className="h-8 w-8">
+            {isOpen ? <ChevronLeft /> : <ChevronRight />}
+          </IconLayout>
         </ButtonIcon>
         <div
           className={`sidebar overflow-hidden z-10  ${isOpen ? "open" : "close"}`}
@@ -41,7 +40,9 @@ export default function Sidebar() {
                       <li key={idx}>
                         <Link href={menu.link}>
                           <div className="flex gap-1 items-center px-4 py-3 hover:bg-background transition duration-300 ease-in-out rounded-md">
-                            {menu.icon}
+                            <IconLayout className="h-5 w-5">
+                              {menu.icon}
+                            </IconLayout>
                             <span>{menu.text}</span>
                           </div>
                         </Link>
