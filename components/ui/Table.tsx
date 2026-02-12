@@ -7,7 +7,7 @@ function Table({ children }: { children: React.ReactNode }) {
   return (
     <div
       id="room-table"
-      className="border border-header rounded-md p-2 min-w-[100%] overflow-x-auto"
+      className="border border-header rounded-md p-2 min-w-[100%] overflow-x-auto md:overflow-visible z-10"
     >
       <table className="w-full">{children}</table>
     </div>

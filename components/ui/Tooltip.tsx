@@ -12,13 +12,13 @@ export default function Tooltip({
 
   return (
     <div
-      className="relative z-20"
+      className="relative"
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
       {children}
       {show && (
-        <div className="absolute -bottom-7 left-0 text-sm bg-black opacity-80 px-2 py-1 z-100 rounded-md">
+        <div className="absolute -bottom-7 -left-5 text-sm bg-black opacity-80 px-2 py-1 z-10 rounded-md">
           {title}
         </div>
       )}

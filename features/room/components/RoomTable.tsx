@@ -5,6 +5,7 @@ import Table from "@/components/ui/Table";
 import RoomList from "@/features/room/components/RoomList";
 import EmptyList from "@/components/ui/EmptyList";
 import { TableHeader } from "@/types/table.type";
+import { ListProps } from "@/types/menu.type";
 
 //to be removed
 import { sampleData } from "@/features/room/fields";
@@ -37,6 +38,28 @@ const theaders: TableHeader[] = [
 ];
 
 export default function RoomTable() {
+  const action = (type: string) => {
+    alert(type);
+  };
+
+  const menuList: ListProps[] = useMemo(
+    () => [
+      {
+        label: "View/Edit",
+        action: () => action("view"),
+      },
+      {
+        label: "Available",
+        action: () => action("status"),
+      },
+      {
+        label: "Delete",
+        action: () => action("delete"),
+      },
+    ],
+    [],
+  );
+
   const displayedRooms = useMemo(() => {
     return sampleData?.slice(0, 20) || [];
   }, []);
@@ -53,7 +76,7 @@ export default function RoomTable() {
         <Table.Head theaders={theaders} />
         <Table.Body>
           {displayedRooms?.map((room) => (
-            <RoomList room={room} key={room.id} />
+            <RoomList room={room} key={room.id} menuList={menuList} />
           ))}
         </Table.Body>
       </Table>
