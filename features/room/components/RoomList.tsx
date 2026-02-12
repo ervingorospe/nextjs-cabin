@@ -27,13 +27,15 @@ const RoomList = React.memo(function RoomList({ room }: RoomProps) {
       <Table.Td>{discount}</Table.Td>
       <Table.Td>{status}</Table.Td>
       <Table.Td className="w-[50px] text-center">
-        <Tooltip title="Menu">
-          <ButtonIcon onClick={() => {}}>
-            <IconLayout className="h-6 w-8 hover:text-secondary">
-              <EllipsisVertical />
-            </IconLayout>
-          </ButtonIcon>
-        </Tooltip>
+        <div className="relative">
+          <Tooltip title="Menu">
+            <ButtonIcon onClick={() => {}}>
+              <IconLayout className="h-6 w-8 hover:text-secondary">
+                <EllipsisVertical />
+              </IconLayout>
+            </ButtonIcon>
+          </Tooltip>
+        </div>
       </Table.Td>
     </Table.Tr>
   );

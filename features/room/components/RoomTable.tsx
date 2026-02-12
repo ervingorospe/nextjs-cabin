@@ -1,4 +1,5 @@
 "use client";
+import { useMemo } from "react";
 import Pagination from "@/components/ui/Pagination";
 import Table from "@/components/ui/Table";
 import RoomList from "@/features/room/components/RoomList";
@@ -36,6 +37,10 @@ const theaders: TableHeader[] = [
 ];
 
 export default function RoomTable() {
+  const displayedRooms = useMemo(() => {
+    return sampleData?.slice(0, 20) || [];
+  }, []);
+
   if (sampleData?.length <= 0) {
     return (
       <EmptyList message="No Room Added, Click Add Room to Get Started." />
@@ -47,12 +52,12 @@ export default function RoomTable() {
       <Table>
         <Table.Head theaders={theaders} />
         <Table.Body>
-          {sampleData?.map((room) => (
+          {displayedRooms?.map((room) => (
             <RoomList room={room} key={room.id} />
           ))}
         </Table.Body>
       </Table>
-      <Pagination count={212} />
+      <Pagination count={sampleData.length} />
     </div>
   );
 }
