@@ -1,11 +1,11 @@
 "use client";
 import { convertSvgToURL } from "@/_lib/_utils/converter.utils";
 import "@/styles/toggle.style.scss";
-import { SizeProps } from "@/_lib/_types/generic.type";
+import { StypeProps } from "@/_lib/_types/generic.type";
 import { cn } from "@/utils/styles";
 import { sizes } from "@/_lib/_types/size.type";
 
-interface Props extends SizeProps {
+interface Props extends StypeProps {
   trackOffColor?: string;
   trackOnColor?: string;
   icon1?: string | null;

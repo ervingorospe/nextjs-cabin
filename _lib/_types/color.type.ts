@@ -4,6 +4,7 @@ const colors = {
   ACCENT: "accent",
   BACKGROUND: "background",
   FOREGROUND: "foreground",
+  WARNING: "warning",
 } as const;
 
 const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900] as const;

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SizeProps, GenericProps } from "@/_lib/_types/generic.type";
+import { StypeProps, GenericProps } from "@/_lib/_types/generic.type";
 import { cn } from "@/utils/styles";
 import {
   ButtonVariant,
@@ -14,7 +14,7 @@ import { getBgColor, getBorderColor, getTextColor } from "@/utils/styles";
 
 interface ButtonProps
   extends
-    SizeProps,
+    StypeProps,
     GenericProps,
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "color"> {
   children: React.ReactNode;

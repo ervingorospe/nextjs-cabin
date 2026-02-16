@@ -2,7 +2,7 @@ import React from "react";
 import { ColorLevel, Colors } from "./color.type";
 import { Sizes } from "./size.type";
 
-interface SizeProps {
+interface StypeProps {
   size?: Sizes;
   color?: Colors;
   level?: ColorLevel;
@@ -13,4 +13,4 @@ interface GenericProps {
   children?: React.ReactNode;
 }
 
-export type { SizeProps, GenericProps };
+export type { StypeProps, GenericProps };

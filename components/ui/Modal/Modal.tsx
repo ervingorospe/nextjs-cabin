@@ -1,17 +1,37 @@
 "use client";
 
-import { GenericProps } from "@/_lib/_types/generic.type";
+import { GenericProps } from "@/types/generic.type";
+import { Sizes, sizes } from "@/_lib/_types/size.type";
 import ButtonIcon from "@/components/ui/ButtonIcon";
 import { useImperativeHandle, useState } from "react";
 import "@/styles/modal.style.scss";
 import { ModalHandle } from "@/types/modal.type";
+import { cn } from "@/_lib/_utils/styles";
 
 interface ModalProps extends GenericProps {
   ref: React.Ref<ModalHandle>;
+  size?: Sizes;
 }
 
-export function Modal({ children, ref }: ModalProps) {
+function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  let sizeClass = "";
+
+  switch (size) {
+    case sizes.SMALL:
+      sizeClass = " md:w-[500px] max-w-[500px]";
+      break;
+    case sizes.MEDIUM:
+      sizeClass = " md:w-[700px] max-h-[700px] max-w-[700px]";
+      break;
+    case sizes.LARGE:
+      sizeClass = "w-[350px] md:w-[700px] max-h-[700px] max-w-[700px]";
+      break;
+    default:
+      sizeClass = " md:w-[700px] max-h-[700px] max-w-[700px]";
+      break;
+  }
 
   useImperativeHandle(ref, () => ({
     setOpen() {
@@ -29,7 +49,11 @@ export function Modal({ children, ref }: ModalProps) {
       <div className="h-full w-full flex items-center justify-center">
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`modal bg-header w-[350px] md:w-[700px] max-h-[700px] overflow-y-auto max-w-[700px] rounded-md text-foreground ${!isOpen ? "hidden" : "block"}`}
+          className={cn(
+            "modal bg-header w-[350px] max-h-[700px] overflow-y-auto  rounded-md text-foreground",
+            sizeClass,
+            !isOpen ? "hidden" : "block",
+          )}
         >
           {children}
         </div>
@@ -64,9 +88,15 @@ export function Body({ children }: GenericProps) {
 
 export function Footer({ children }: GenericProps) {
   return (
-    <div>
+    <div className="p-4 md:p-6">
       <hr className="my-4 border-foreground-900 dark:border-gray-700" />
       {children}
     </div>
   );
 }
+
+Modal.Header = Header;
+Modal.Body = Body;
+Modal.Footer = Footer;
+
+export default Modal;
