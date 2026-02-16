@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Pagination from "@/components/ui/Pagination";
 import Table from "@/components/ui/Table";
@@ -94,15 +94,17 @@ export default function RoomTable() {
 
   return (
     <div className="grid gap-2">
-      <Table>
-        <Table.Head theaders={theaders} />
-        <Table.Body>
-          {displayedRooms?.map((room) => (
-            <RoomList room={room} key={room.id} menuList={menuList} />
-          ))}
-        </Table.Body>
-      </Table>
-      <Pagination count={sampleData.length} />
+      <Suspense fallback={null}>
+        <Table>
+          <Table.Head theaders={theaders} />
+          <Table.Body>
+            {displayedRooms?.map((room) => (
+              <RoomList room={room} key={room.id} menuList={menuList} />
+            ))}
+          </Table.Body>
+        </Table>
+        <Pagination count={sampleData.length} />
+      </Suspense>
 
       <Modal ref={modalRef} size={sizes.SMALL}>
         {actionType === "view" ? (
