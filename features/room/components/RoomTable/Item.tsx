@@ -7,19 +7,14 @@ import ButtonIcon from "@/components/ui/ButtonIcon";
 import Tooltip from "@/components/ui/Tooltip";
 import Menu from "@/components/ui/Menu";
 import { ListProps } from "@/types/menu.type";
+import { Room } from "@/features/room/types";
 
 interface RoomProps {
-  room: {
-    id: string | number;
-    name: string;
-    price: number;
-    discount: number;
-    status: string;
-  };
+  room: Room;
   menuList: ListProps[];
 }
 
-const RoomList = React.memo(function RoomList({ room, menuList }: RoomProps) {
+const RoomItem = React.memo(function RoomList({ room, menuList }: RoomProps) {
   const [open, setOpen] = useState(false);
   const { id, name, price, discount, status } = room;
 
@@ -50,4 +45,4 @@ const RoomList = React.memo(function RoomList({ room, menuList }: RoomProps) {
   );
 });
 
-export default RoomList;
+export default RoomItem;

@@ -29,7 +29,7 @@ export default function RoomForm({ data }: { data: RoomDTO }) {
 
   const { reset, clearErrors } = methods;
 
-  const onSubmit: SubmitHandler<RoomDTOOutput> = (data) => {
+  const onSubmit: SubmitHandler<RoomDTOOutput> = async (data) => {
     console.log({ ...data, images });
   };
 

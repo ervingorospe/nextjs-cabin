@@ -8,3 +8,23 @@ export interface FieldConfig extends React.InputHTMLAttributes<HTMLInputElement>
   type: string;
   options?: OptionsProps[];
 }
+
+export type Room = {
+  id: string | number;
+  name: string;
+  price: number;
+  discount: number;
+  status: string;
+};
+
+export type Rooms = {
+  rooms: Room;
+};
+
+export const actions = {
+  VIEW: "view",
+  STATUS: "status",
+  DELETE: "delete",
+} as const;
+
+export type Action = (typeof actions)[keyof typeof actions];

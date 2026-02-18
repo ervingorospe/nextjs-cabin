@@ -87,12 +87,7 @@ export function Body({ children }: GenericProps) {
 }
 
 export function Footer({ children }: GenericProps) {
-  return (
-    <div className="p-4 md:p-6">
-      <hr className="my-4 border-foreground-900 dark:border-gray-700" />
-      {children}
-    </div>
-  );
+  return <div className="p-4 md:p-6">{children}</div>;
 }
 
 Modal.Header = Header;

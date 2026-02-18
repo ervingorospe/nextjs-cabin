@@ -1,61 +1,26 @@
 "use client";
-import { useMemo, useRef, useState, Suspense } from "react";
+import { useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Pagination from "@/components/ui/Pagination";
 import Table from "@/components/ui/Table";
-import RoomList from "@/features/room/components/RoomList";
-import EmptyList from "@/components/ui/EmptyList";
+import Item from "./Item";
+
 import Modal from "@/components/ui/Modal";
 import IconLayout from "@/components/ui/icons/IconLayout";
 import Warning from "@/components/ui/icons/Warning";
-import { TableHeader } from "@/types/table.type";
+import Button from "@/components/ui/Button";
+
 import { ListProps } from "@/types/menu.type";
 import { ModalHandle } from "@/types/modal.type";
 import { sizes } from "@/types/size.type";
 import { colors } from "@/types/color.type";
+import type { Room, Action } from "@/features/room/types";
+import { actions } from "@/features/room/types";
+import { theaders } from "@/features/room/constants";
 
 const Dialog = dynamic(() => import("@/components/ui/Dialog"), { ssr: false });
 
-//to be removed
-import { sampleData } from "@/features/room/fields";
-import Button from "@/components/ui/Button";
-
-const actions = {
-  VIEW: "view",
-  STATUS: "status",
-  DELETE: "delete",
-} as const;
-
-type Action = (typeof actions)[keyof typeof actions];
-
-const theaders: TableHeader[] = [
-  {
-    label: "ID",
-    className: "",
-  },
-  {
-    label: "Room Name",
-    className: "",
-  },
-  {
-    label: "Price",
-    className: "",
-  },
-  {
-    label: "Discount",
-    className: "",
-  },
-  {
-    label: "Status",
-    className: "",
-  },
-  {
-    label: "",
-    className: "",
-  },
-];
-
-export default function RoomTable() {
+export default function RoomList({ rooms }: { rooms: Room[] }) {
   const modalRef = useRef<ModalHandle>(null);
   const [actionType, setActionType] = useState<Action | null>(null);
 
@@ -83,28 +48,24 @@ export default function RoomTable() {
   );
 
   const displayedRooms = useMemo(() => {
-    return sampleData?.slice(0, 20) || [];
-  }, []);
+    return rooms?.slice(0, 20) || [];
+  }, [rooms]);
 
-  if (sampleData?.length <= 0) {
-    return (
-      <EmptyList message="No Room Added, Click Add Room to Get Started." />
-    );
-  }
+  const doConfirm = async () => {
+    alert(actionType);
+  };
 
   return (
     <div className="grid gap-2">
-      <Suspense fallback={null}>
-        <Table>
-          <Table.Head theaders={theaders} />
-          <Table.Body>
-            {displayedRooms?.map((room) => (
-              <RoomList room={room} key={room.id} menuList={menuList} />
-            ))}
-          </Table.Body>
-        </Table>
-        <Pagination count={sampleData.length} />
-      </Suspense>
+      <Table>
+        <Table.Head theaders={theaders} />
+        <Table.Body>
+          {displayedRooms?.map((room: Room) => (
+            <Item room={room} key={room.id} menuList={menuList} />
+          ))}
+        </Table.Body>
+      </Table>
+      <Pagination count={rooms.length} />
 
       <Modal ref={modalRef} size={sizes.SMALL}>
         {actionType === "view" ? (
@@ -131,11 +92,11 @@ export default function RoomTable() {
             }
             renderButton={
               actionType === actions.DELETE ? (
-                <Button onClick={() => {}} color={colors.WARNING}>
+                <Button onClick={doConfirm} color={colors.WARNING}>
                   Delete
                 </Button>
               ) : (
-                <Button>Confirm</Button>
+                <Button onClick={doConfirm}>Confirm</Button>
               )
             }
           />
