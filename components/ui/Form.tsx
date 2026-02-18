@@ -48,14 +48,15 @@ function Form<TInput extends FieldValues, TOutput extends FieldValues>({
   children,
   methods,
   onSubmit,
+  className,
   ...rest
 }: FormProps<TInput, TOutput>) {
   return (
     <FormProvider {...methods}>
       <form
         {...rest}
-        className="flex flex-wrap w-full gap-4"
-        onSubmit={methods.handleSubmit(onSubmit)} // Optional: makes usage cleaner
+        className={cn("flex flex-wrap w-full gap-4 items-center", className)}
+        onSubmit={methods.handleSubmit(onSubmit)}
       >
         {children}
       </form>

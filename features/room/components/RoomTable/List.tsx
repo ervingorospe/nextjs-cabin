@@ -65,6 +65,7 @@ export default function RoomList({ rooms }: { rooms: Room[] }) {
           ))}
         </Table.Body>
       </Table>
+
       <Pagination count={rooms.length} />
 
       <Modal ref={modalRef} size={sizes.SMALL}>

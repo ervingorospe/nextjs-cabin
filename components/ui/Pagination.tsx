@@ -89,7 +89,7 @@ const PageNumbers = React.memo(function PageNumbers({
   totalPages: number;
   currentPage: number;
 }) {
-  const { setPage } = usePageQuery();
+  const { setQuery: setPage } = usePageQuery();
 
   return (
     <>

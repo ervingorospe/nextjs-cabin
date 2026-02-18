@@ -7,14 +7,20 @@ export default function usePageQuery(paramName: string = "page") {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const currentPage = Number(searchParams.get(paramName) ?? 1);
+  let query: unknown = searchParams.get(paramName) ?? "";
 
-  const setPage = useCallback(
-    (page: number) => {
-      if (page < 1) return;
+  if (paramName === "page") {
+    query = Number(searchParams.get(paramName) ?? 1);
+  }
+
+  const setQuery = useCallback(
+    (q: unknown) => {
+      if (paramName === "page") {
+        if (Number(q) < 1) return;
+      }
 
       const params = new URLSearchParams(searchParams.toString());
-      params.set(paramName, String(page));
+      params.set(paramName, String(q));
 
       router.push(`?${params.toString()}`);
     },
@@ -22,7 +28,7 @@ export default function usePageQuery(paramName: string = "page") {
   );
 
   return {
-    page: currentPage,
-    setPage,
+    query,
+    setQuery,
   };
 }

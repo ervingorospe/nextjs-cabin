@@ -2,13 +2,14 @@
 
 import List from "./List";
 import EmptyList from "@/components/ui/EmptyList";
-import usePageQuery from "@/hooks/usePageQuery";
+import { useTableFilter } from "@/features/room/hooks";
 
 //to be removed
 import { sampleData } from "@/features/room/fields";
 
 export default function RoomTable() {
-  const { page } = usePageQuery();
+  const { page, search, status, order } = useTableFilter();
+  console.log(page, search, status, order);
 
   if (sampleData?.length <= 0) {
     return (
