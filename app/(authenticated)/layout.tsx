@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
+import { Box } from "@mui/material";
 
 export default function AuthenticatedLayout({
   children,
@@ -8,14 +9,25 @@ export default function AuthenticatedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative container">
+    <Box
+      sx={{
+        mx: "auto",
+        maxInlineSize: "134rem",
+        width: "100%",
+      }}
+    >
       <Header />
-      <div className="flex overflow-hidden">
+      <Box
+        sx={{
+          display: "flex",
+          overflow: "hidden",
+        }}
+      >
         <Sidebar />
         <main className="w-full">
-          <div className="p-4 sm:p-8 md:p-12 w-full mx-auto">{children}</div>
+          <Box className="p-4 sm:p-8 md:p-12 w-full mx-auto">{children}</Box>
         </main>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

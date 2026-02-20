@@ -28,7 +28,8 @@
       "@/styles/*": ["_lib/_styles/*"],
       "@/data/*": ["_lib/_data/*"],
       "@/schema/*": ["_lib/_schema/*"],
-      "@/features/*": ["features/*"]
+      "@/features/*": ["features/*"],
+      "@/theme/*": ["theme/*"]
     }
   },
   "include": [

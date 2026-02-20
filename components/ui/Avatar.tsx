@@ -1,55 +1,55 @@
 "use client";
 
-import { cn } from "@/utils/styles";
-import { StypeProps } from "@/_lib/_types/generic.type";
-import { ImageProps } from "@/_lib/_types/image.type";
-import Image from "next/image";
-import { getInitials } from "@/_lib/_utils/formatter.utils";
-import { sizes } from "@/_lib/_types/size.type";
+import { Avatar as MuiAvatar } from "@mui/material";
+import { AvatarProps as MuiAvatarProps } from "@mui/material/Avatar";
+import { stringToColor, getInitials } from "@/utils/formatter.utils";
+import { sizes, Sizes } from "@/types/size.type";
 
-interface AvatarProps extends StypeProps, ImageProps {
+interface AvatarProps extends MuiAvatarProps {
+  image?: string;
   name: string;
+  size?: Sizes;
 }
 
-export default function Avatar({ ...rest }: AvatarProps) {
-  const { name, image, size = "md", className } = rest;
-  const sizeClass =
-    size === sizes.LARGE
-      ? "size-14 text-lg"
-      : size === sizes.SMALL
-        ? "size-8 text-sm"
-        : "size-12 text-md";
-  const hoverClass =
-    "hover:opacity-80 transition-opacity duration-300 ease-in-out";
+export default function Avatar({ image, name, size, ...rest }: AvatarProps) {
+  let sxSize = {
+    height: 45,
+    width: 45,
+  };
+
+  switch (size) {
+    case sizes.SMALL:
+      sxSize = {
+        height: 30,
+        width: 30,
+      };
+      break;
+    case sizes.LARGE:
+      sxSize = {
+        height: 56,
+        width: 56,
+      };
+      break;
+    default:
+      sxSize = {
+        height: 40,
+        width: 40,
+      };
+  }
 
   if (image) {
     return (
-      <Image
+      <MuiAvatar
+        sx={{ bgColor: stringToColor(name), ...sxSize }}
         {...rest}
         src={image}
-        className={cn(
-          "rounded-full ring-2 ring-background outline -outline-offset-1 outline-white/10",
-          sizeClass,
-          hoverClass,
-          className,
-        )}
-        alt={name}
       />
     );
   }
 
   return (
-    <div
-      className={cn(
-        "flex items-center justify-center rounded-full",
-        "bg-muted text-muted-foreground bg-primary text-white font-medium",
-        "outline outline-offset-1 outline-background-300  ",
-        sizeClass,
-        hoverClass,
-        className,
-      )}
-    >
+    <MuiAvatar sx={{ bgColor: stringToColor(name), ...sxSize }}>
       {getInitials(name)}
-    </div>
+    </MuiAvatar>
   );
 }

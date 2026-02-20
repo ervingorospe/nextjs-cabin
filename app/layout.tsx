@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import AppThemeProvider from "@/theme/ThemeProvider";
 import "./globals.scss";
 
 const geistSans = Geist({
@@ -29,8 +29,8 @@ export default function RootLayout({
       suppressHydrationWarning={true}
       className={` ${geistSans.variable} ${geistMono.variable}`}
     >
-      <body className="antialiased bg-background text-foreground mx-auto">
-        <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
+      <body className="antialiased mx-auto">
+        <AppThemeProvider>{children}</AppThemeProvider>
       </body>
     </html>
   );

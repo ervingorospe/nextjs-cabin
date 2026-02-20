@@ -1,5 +1,5 @@
 const convertSvgToURL = (svgString: string) => {
-  if (!svgString) return null;
+  if (!svgString) return "";
 
   const cleansedSvg = svgString.replace(/\n/g, "").replace(/>\s+</g, "><");
   const encodedSvg = encodeURIComponent(cleansedSvg)
