@@ -7,25 +7,42 @@ const theme = extendTheme({
   colorSchemes,
   colorSchemeSelector: "data-mui-color-scheme",
   typography: {
+    fontFamily: "'Inter', 'Roboto', sans-serif",
     h1: {
       color: "var(--mui-palette-text-heading)",
       fontSize: "2rem",
       fontWeight: 700,
+      letterSpacing: "0.02em",
     },
     h2: {
       color: "var(--mui-palette-text-heading)",
       fontSize: "1.7rem",
       fontWeight: 670,
+      letterSpacing: "0.02em",
     },
     h3: {
       color: "var(--mui-palette-text-heading)",
       fontSize: "1.4rem",
       fontWeight: 640,
+      letterSpacing: "0.02em",
     },
     h4: {
       color: "var(--mui-palette-text-heading)",
-      fontSize: "1.2rem",
+      fontSize: "1rem",
       fontWeight: 600,
+      letterSpacing: "0.02em",
+    },
+    subtitle1: {
+      fontSize: "0.9rem",
+      fontWeight: 500,
+    },
+    body1: {
+      fontSize: 14,
+      fontWeight: 300,
+    },
+    body2: {
+      fontSize: 12,
+      fontWeight: 300,
     },
   },
   shape: {

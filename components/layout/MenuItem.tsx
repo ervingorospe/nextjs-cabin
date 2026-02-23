@@ -2,7 +2,7 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import { styled, Stack, StackProps } from "@mui/material";
+import { styled, Stack, StackProps, Typography } from "@mui/material";
 import IconLayout from "@/components/ui/icons/IconLayout";
 
 interface MenuItemWrapperProps extends Omit<StackProps, "theme"> {
@@ -43,8 +43,7 @@ export default function MenuItem({
       active={active}
     >
       <IconLayout className="h-5 w-5">{menu.icon}</IconLayout>
-
-      <p>{menu.text}</p>
+      <Typography variant="subtitle1">{menu.text}</Typography>
     </MenuItemWrapper>
   );
 }

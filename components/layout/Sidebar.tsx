@@ -41,6 +41,8 @@ export default function Sidebar() {
           sx={{
             overflow: "hidden",
             zIndex: 10,
+            overflowY: "auto",
+            height: "100%",
           }}
           className={`sidebar ${isOpen ? "open" : "close"}`}
         >
@@ -64,7 +66,6 @@ export default function Sidebar() {
                     component="ul"
                     spacing="3px"
                     sx={{
-                      fontWeight: 600,
                       mt: 1,
                     }}
                   >
@@ -83,7 +84,7 @@ export default function Sidebar() {
         </Box>
       </Box>
 
-      <div className={`sidebar ${isOpen ? "open" : "close"}`}></div>
+      <Box className={`sidebar ${isOpen ? "open" : "close"}`}></Box>
     </Box>
   );
 }
