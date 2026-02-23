@@ -78,6 +78,32 @@ const theme = extendTheme({
         root: {
           textTransform: "capitalize",
           borderRadius: "5px",
+          border: "1px solid transparent",
+          boxShadow: "none",
+        },
+        contained: ({
+          theme,
+          ownerState,
+        }: {
+          theme: Theme;
+          ownerState: ButtonProps;
+        }) => {
+          const color = ownerState.color || "primary";
+
+          if (!color || color === "inherit") return {};
+
+          const paletteColor = theme.palette[color];
+
+          if (!paletteColor) return {};
+
+          return {
+            "&:hover": {
+              backgroundColor: "transparent !important",
+              color: paletteColor.main,
+              boxShadow: "none",
+              border: `1px solid ${paletteColor.main}`,
+            },
+          };
         },
         outlined: ({
           theme,

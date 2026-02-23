@@ -1,9 +1,8 @@
 "use client";
 import React, { useRef } from "react";
-import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
-import { variants as btnVariants } from "@/_lib/_types/button.type";
 import { ModalHandle } from "@/types/modal.type";
+import { Stack, Button, ButtonProps } from "@mui/material";
 
 interface PageHeaderProps {
   children?: React.ReactNode;
@@ -12,30 +11,39 @@ interface PageHeaderProps {
 
 function PageHeader({ children, title }: PageHeaderProps) {
   return (
-    <div className="flex items-center justify-between w-full mb-8">
+    <Stack
+      component="div"
+      direction="row"
+      justifyContent="space-between"
+      className="flex items-center justify-between w-full mb-8"
+    >
       <h1 className="text-4xl font-bold tracking-wide">{title}</h1>
       {children}
-    </div>
+    </Stack>
   );
 }
 
-function ModalHeader({
-  buttonRender,
-  ModalRender,
-  ModalTitle,
-}: {
+interface ModalHeader extends ButtonProps {
   buttonRender: React.ReactNode;
   ModalRender: React.ReactNode;
   ModalTitle: string;
-}) {
+}
+
+function ModalHeader({
+  ModalRender,
+  ModalTitle,
+  buttonRender,
+  ...rest
+}: ModalHeader) {
   const modalRef = useRef<ModalHandle>(null);
 
   return (
     <>
       <Button
+        variant="contained"
         onClick={() => modalRef.current?.setOpen()}
-        variant={btnVariants.SOLID}
         className="flex items-center gap-1"
+        {...rest}
       >
         {buttonRender}
       </Button>

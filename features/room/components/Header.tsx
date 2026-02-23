@@ -11,14 +11,11 @@ export default function Header() {
     <div>
       <PageHeader title="Room">
         <PageHeader.Modal
-          buttonRender={
-            <>
-              <IconLayout className="h-7 w-7">
-                <Plus />
-              </IconLayout>
-
-              <span>Add Room</span>
-            </>
+          buttonRender={<span>Add Room</span>}
+          startIcon={
+            <IconLayout className="h-7 w-7">
+              <Plus />
+            </IconLayout>
           }
           ModalRender={<Form data={defaultValue} />}
           ModalTitle="New Room"
