@@ -14,12 +14,12 @@ export default function Header() {
       }}
     >
       <Box component="header" sx={{ bgcolor: "background.paper" }}>
-        <Box
+        <Stack
+          justifyContent="space-between"
+          direction="row"
+          alignItems="center"
           sx={{
             p: 3,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "items-center",
           }}
         >
           <Box>logo</Box>
@@ -43,7 +43,7 @@ export default function Header() {
               </Link>
             </Box>
           </Stack>
-        </Box>
+        </Stack>
       </Box>
     </Box>
   );

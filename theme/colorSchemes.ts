@@ -86,7 +86,7 @@ export const colorSchemes = {
       ...sharedPallete,
       text: {
         primary: "#8fa2b4",
-        heading: "#edf0f3",
+        heading: "#fff",
       },
       background: {
         default: "#111827",

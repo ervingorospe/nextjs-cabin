@@ -1,62 +1,89 @@
 "use client";
+
 import { useState } from "react";
+import Link from "next/link";
 import "@/styles/sidebar.style.scss";
 import ChevronLeft from "@/components/ui/icons/ChevronLeft";
 import ChevronRight from "@/components/ui/icons/ChevronRight";
 import IconLayout from "@/components/ui/icons/IconLayout";
-import ButtonIcon from "@/components/ui/ButtonIcon";
+import MenuItem from "@/components/layout/MenuItem";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import routes from "@/data/routes";
-import Link from "next/link";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="absolute md:relative z-10">
-      <div className="fixed h-[100%] bg-header shadow-lg">
-        <ButtonIcon
+    <Box className="absolute md:relative z-10">
+      <Box
+        sx={{ bgcolor: "background.paper", height: "100%", position: "fixed" }}
+        className="shadow-lg"
+      >
+        <IconButton
+          sx={{
+            bgcolor: "background.paper",
+            position: "absolute",
+            right: -35,
+            top: 80,
+            borderRadius: 1,
+            zIndex: 20,
+            "&:hover": {
+              bgcolor: "background.paper",
+            },
+          }}
           onClick={() => setIsOpen((open) => !open)}
-          className="absolute rounded-md -right-6 top-30 py-2 bg-header z-20"
         >
           <IconLayout className="h-8 w-8">
             {isOpen ? <ChevronLeft /> : <ChevronRight />}
           </IconLayout>
-        </ButtonIcon>
-        <div
-          className={`sidebar overflow-hidden z-10  ${isOpen ? "open" : "close"}`}
+        </IconButton>
+        <Box
+          sx={{
+            overflow: "hidden",
+            zIndex: 10,
+          }}
+          className={`sidebar ${isOpen ? "open" : "close"}`}
         >
-          <ul className="grid gap-4 py-4 px-8">
+          <Stack component="ul" spacing={2} sx={{ px: 2, py: 1, mt: 2 }}>
             {routes?.map((nav, i) => (
-              <li
-                className="border-b border-background-400 pb-4 last:border-b-0"
+              <Box
+                component="li"
+                sx={{
+                  p: 1,
+                  borderBottom: "1px solid",
+                  borderBottomColor: "background.400",
+                  "&:last-child": {
+                    borderBottom: 0,
+                  },
+                }}
                 key={i}
               >
-                <h4 className="text-lg font-bold tracking-wider">
-                  {nav.label}
-                </h4>
+                <Typography variant="h4">{nav.label}</Typography>
                 {nav.menu.length > 0 && (
-                  <ul className="grid font-semibold text-foreground mt-2">
+                  <Stack
+                    component="ul"
+                    spacing="3px"
+                    sx={{
+                      fontWeight: 600,
+                      mt: 1,
+                    }}
+                  >
                     {nav.menu?.map((menu, idx) => (
-                      <li key={idx}>
+                      <Box component="li" key={idx}>
                         <Link href={menu.link}>
-                          <div className="flex gap-1 items-center px-4 py-3 hover:bg-background transition duration-300 ease-in-out rounded-md">
-                            <IconLayout className="h-5 w-5">
-                              {menu.icon}
-                            </IconLayout>
-                            <span>{menu.text}</span>
-                          </div>
+                          <MenuItem menu={menu} />
                         </Link>
-                      </li>
+                      </Box>
                     ))}
-                  </ul>
+                  </Stack>
                 )}
-              </li>
+              </Box>
             ))}
-          </ul>
-        </div>
-      </div>
+          </Stack>
+        </Box>
+      </Box>
 
       <div className={`sidebar ${isOpen ? "open" : "close"}`}></div>
-    </div>
+    </Box>
   );
 }

@@ -7,16 +7,60 @@ const theme = extendTheme({
   colorSchemes,
   colorSchemeSelector: "data-mui-color-scheme",
   typography: {
-    h1: { color: "text.heading", fontWeight: 700 },
-    h2: { color: "text.heading", fontWeight: 700 },
-    h3: { color: "text.heading", fontWeight: 600 },
-    h4: { color: "text.heading", fontWeight: 600 },
+    h1: {
+      color: "var(--mui-palette-text-heading)",
+      fontSize: "2rem",
+      fontWeight: 700,
+    },
+    h2: {
+      color: "var(--mui-palette-text-heading)",
+      fontSize: "1.7rem",
+      fontWeight: 670,
+    },
+    h3: {
+      color: "var(--mui-palette-text-heading)",
+      fontSize: "1.4rem",
+      fontWeight: 640,
+    },
+    h4: {
+      color: "var(--mui-palette-text-heading)",
+      fontSize: "1.2rem",
+      fontWeight: 600,
+    },
+  },
+  shape: {
+    borderRadius: 5,
   },
   components: {
+    MuiStack: {
+      defaultProps: {
+        spacing: 2,
+        alignItems: "right",
+        alignContent: "center",
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        disableRipple: false,
+      },
+      styleOverrides: {
+        root: {
+          transition: "all 0.5s ease-in-out !important",
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          padding: "5px",
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
           textTransform: "capitalize",
+          borderRadius: "5px",
         },
         outlined: ({
           theme,
