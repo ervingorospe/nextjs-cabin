@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import Modal from "@/components/ui/Modal";
 import { ModalHandle } from "@/types/modal.type";
 import { Stack, Button, ButtonProps } from "@mui/material";
+import { variants } from "@/_lib/_types/button.type";
 
 interface PageHeaderProps {
   children?: React.ReactNode;
@@ -40,9 +41,8 @@ function ModalHeader({
   return (
     <>
       <Button
-        variant="contained"
+        variant={variants.CONTAINED}
         onClick={() => modalRef.current?.setOpen()}
-        className="flex items-center gap-1"
         {...rest}
       >
         {buttonRender}

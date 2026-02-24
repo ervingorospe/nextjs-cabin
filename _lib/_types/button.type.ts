@@ -1,7 +1,6 @@
 const variants = {
-  SOLID: "solid",
-  OUTLINE: "outline",
-  TEXT: "text",
+  CONTAINED: "contained",
+  OUTLINED: "outlined",
 } as const;
 
 type ButtonVariant = (typeof variants)[keyof typeof variants];

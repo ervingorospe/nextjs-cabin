@@ -14,7 +14,7 @@ export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <Box className="absolute md:relative z-10">
+    <Box sx={{ display: { sx: "absolute", md: "relative" }, zIndex: 10 }}>
       <Box
         sx={{ bgcolor: "background.paper", height: "100%", position: "fixed" }}
         className="shadow-lg"

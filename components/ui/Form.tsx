@@ -9,7 +9,6 @@ import {
 } from "react-hook-form";
 import IconLayout from "@/components/ui/icons/IconLayout";
 import CircleMark from "@/components/ui/icons/CircleMark";
-import Tooltip from "@/components/ui/Tooltip";
 import PreviewImage from "@/components/ui/PreviewImage";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import { uploadMultipleImage, removeImage } from "@/utils/image.utils";
@@ -21,6 +20,17 @@ import type {
   FormProps,
 } from "@/types/form.type";
 import "react-quill-new/dist/quill.snow.css";
+import {
+  Button,
+  Typography,
+  Box,
+  Grid,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
+import { variants } from "@/_lib/_types/button.type";
+import { colors } from "@/types/color.type";
+import { sizes } from "@/types/size.type";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 
@@ -160,12 +170,16 @@ function UploadFile({ children, buttonText, ...rest }: UploadFileProps) {
   return (
     <div className="relative flex items-center gap-2">
       <input type="file" id="fileUpload" hidden {...rest} />
-      <label
+      <Button
+        component="label"
+        variant={variants.CONTAINED}
+        color={colors.SECONDARY}
         htmlFor="fileUpload"
+        size={sizes.SMALL}
         className="btn btn-sm text-white bg-secondary border border-secondary hover:bg-transparent hover:text-secondary transition duration-300 ease-in-out"
       >
         {buttonText}
-      </label>
+      </Button>
       {children}
     </div>
   );
@@ -176,22 +190,26 @@ const UploadImages = React.memo(function UploadImages({
   setImages,
 }: UploadImagesProps) {
   return (
-    <div className="w-full">
-      <div className="grid mb-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+    <Box>
+      <Grid container spacing={1} sx={{ mb: 2 }}>
         {images?.map((img, idx) => (
-          <PreviewImage image={img} key={idx}>
-            <div className="absolute right-0 top-0">
-              <Tooltip title="Remove">
-                <div onClick={() => setImages([...removeImage(images, idx)])}>
-                  <IconLayout className="h-6 w-6 cursor-pointer text-white hover:opacity-80">
-                    <CircleMark />
-                  </IconLayout>
-                </div>
-              </Tooltip>
-            </div>
-          </PreviewImage>
+          <Grid key={idx} size={{ xs: 6, md: 3, lg: 2.4 }}>
+            <PreviewImage image={img}>
+              <Box sx={{ position: "absolute", right: 0, top: 0 }}>
+                <Tooltip title="Remove">
+                  <IconButton
+                    onClick={() => setImages([...removeImage(images, idx)])}
+                  >
+                    <IconLayout className="h-6 w-6 cursor-pointer text-white hover:opacity-80">
+                      <CircleMark />
+                    </IconLayout>
+                  </IconButton>
+                </Tooltip>
+              </Box>
+            </PreviewImage>
+          </Grid>
         ))}
-      </div>
+      </Grid>
       <UploadFile
         name="images"
         multiple={true}
@@ -203,9 +221,9 @@ const UploadImages = React.memo(function UploadImages({
           )
         }
       >
-        <span>max of 5 images</span>
+        <Typography variant="body1">max of 5 images</Typography>
       </UploadFile>
-    </div>
+    </Box>
   );
 });
 

@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 // components
 import Form from "@/components/ui/Form";
-import Button from "@/components/ui/Button";
+import { Button, Stack } from "@mui/material";
 // types
 import { ImageUploadType } from "@/types/image.type";
 import {
@@ -49,17 +49,23 @@ export default function RoomForm({ data }: { data: RoomDTO }) {
 
       <Form.UploadImages images={images} setImages={setImages} />
 
-      <div className="flex w-full justify-end gap-2">
+      <Stack
+        direction="row"
+        justifyContent="flex-end"
+        sx={{ width: "100%", mt: 4 }}
+      >
         <Button
           type="button"
           onClick={onClear}
-          variant={variants.OUTLINE}
+          variant={variants.OUTLINED}
           color={colors.SECONDARY}
         >
           Clear
         </Button>
-        <Button type="submit">Submit</Button>
-      </div>
+        <Button type="submit" variant={variants.CONTAINED}>
+          Submit
+        </Button>
+      </Stack>
     </Form>
   );
 }

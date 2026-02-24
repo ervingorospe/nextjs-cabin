@@ -78,8 +78,8 @@ const theme = extendTheme({
         root: {
           textTransform: "capitalize",
           borderRadius: "5px",
-          border: "1px solid transparent",
           boxShadow: "none",
+          minWidth: "8rem",
         },
         contained: ({
           theme,
@@ -97,6 +97,7 @@ const theme = extendTheme({
           if (!paletteColor) return {};
 
           return {
+            border: `1px solid ${paletteColor.main}`,
             "&:hover": {
               backgroundColor: "transparent !important",
               color: paletteColor.main,
@@ -121,6 +122,7 @@ const theme = extendTheme({
           if (!paletteColor) return {};
 
           return {
+            border: `1px solid ${paletteColor.main}`,
             "&:hover": {
               backgroundColor: paletteColor.main,
               color: paletteColor.contrastText,

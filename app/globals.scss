@@ -8,22 +8,6 @@ $theme-colors-dark: (
   foreground: #8fa2b4,
 );
 
-.btn {
-  @apply min-w-[120px] text-center cursor-pointer rounded-md px-6 py-2 tracking-wide font-semibold transition-all duration-300 ease-in-out;
-
-  &-sm {
-    @apply text-sm px-4 py-1;
-  }
-
-  &-md {
-    @apply text-base px-6 py-2;
-  }
-
-  &-lg {
-    @apply text-lg px-8 py-3;
-  }
-}
-
 .ql-container {
   border-radius: 0 0 10px 10px !important;
 }
@@ -61,19 +45,10 @@ $theme-colors-dark: (
 *,
 *::before,
 *::after {
-  /* Creating animations for dark mode */
   transition:
     background-color 0.3s ease-in-out,
     border-color 0.3s ease-in-out;
 }
-
-// if prefer the theme of the system/browser
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
 
 body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;

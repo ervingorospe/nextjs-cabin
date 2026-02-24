@@ -17,6 +17,7 @@ import { colors } from "@/types/color.type";
 import type { Room, Action } from "@/features/room/types";
 import { actions } from "@/features/room/types";
 import { theaders } from "@/features/room/constants";
+import { Stack, Typography, Box } from "@mui/material";
 
 const Dialog = dynamic(() => import("@/components/ui/Dialog"), { ssr: false });
 
@@ -56,7 +57,7 @@ export default function RoomList({ rooms }: { rooms: Room[] }) {
   };
 
   return (
-    <div className="grid gap-2">
+    <Stack>
       <Table>
         <Table.Head theaders={theaders} />
         <Table.Body>
@@ -78,16 +79,26 @@ export default function RoomList({ rooms }: { rooms: Room[] }) {
             renderDialog={
               <>
                 {actionType === actions.STATUS ? (
-                  <div className="flex gap-2">
-                    <p>Are you sure you want to change status?</p>
-                  </div>
+                  <Stack>
+                    <Typography variant="body1">
+                      Are you sure you want to change status?
+                    </Typography>
+                  </Stack>
                 ) : (
-                  <div className="flex gap-2 text-red-600">
-                    <IconLayout className="h-6 w-6">
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={1}
+                    color="warning.main"
+                  >
+                    <IconLayout className="h-4 w-4">
                       <Warning />
                     </IconLayout>
-                    <p>Are you sure you want to delete?</p>
-                  </div>
+
+                    <Typography variant="body1">
+                      Are you sure you want to delete?
+                    </Typography>
+                  </Stack>
                 )}
               </>
             }
@@ -103,6 +114,6 @@ export default function RoomList({ rooms }: { rooms: Room[] }) {
           />
         )}
       </Modal>
-    </div>
+    </Stack>
   );
 }
