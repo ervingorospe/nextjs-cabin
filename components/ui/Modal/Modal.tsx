@@ -2,11 +2,10 @@
 
 import { GenericProps } from "@/types/generic.type";
 import { Sizes, sizes } from "@/_lib/_types/size.type";
-import ButtonIcon from "@/components/ui/ButtonIcon";
 import { useImperativeHandle, useState } from "react";
 import "@/styles/modal.style.scss";
 import { ModalHandle } from "@/types/modal.type";
-import { cn } from "@/_lib/_utils/styles";
+import { Box, Divider, Stack, Typography } from "@mui/material";
 
 interface ModalProps extends GenericProps {
   ref: React.Ref<ModalHandle>;
@@ -16,22 +15,25 @@ interface ModalProps extends GenericProps {
 function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  let sizeClass = "";
+  const modalStyles = {
+    [sizes.SMALL]: {
+      width: { xs: "350px", md: "500px" },
+      maxWidth: "500px",
+      maxHeight: "700px",
+    },
+    [sizes.MEDIUM]: {
+      width: { xs: "350px", md: "700px" },
+      maxHeight: "700px",
+      maxWidth: "700px",
+    },
+    [sizes.LARGE]: {
+      width: { xs: "350px", md: "900px" },
+      maxHeight: "700px",
+      maxWidth: "900px",
+    },
+  } as const;
 
-  switch (size) {
-    case sizes.SMALL:
-      sizeClass = " md:w-[500px] max-w-[500px]";
-      break;
-    case sizes.MEDIUM:
-      sizeClass = " md:w-[700px] max-h-[700px] max-w-[700px]";
-      break;
-    case sizes.LARGE:
-      sizeClass = "w-[350px] md:w-[700px] max-h-[700px] max-w-[700px]";
-      break;
-    default:
-      sizeClass = " md:w-[700px] max-h-[700px] max-w-[700px]";
-      break;
-  }
+  const sizeClass = modalStyles[size] || modalStyles[sizes.MEDIUM];
 
   useImperativeHandle(ref, () => ({
     setOpen() {
@@ -40,25 +42,40 @@ function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
   }));
 
   return (
-    <div
+    <Box
       onClick={() => setIsOpen((val) => !val)}
       role="dialog"
       aria-modal="true"
-      className={`backrop bg-black/10 backdrop-blur-[4px] top-0 left-0  w-[100%] h-[100%] z-100 ${isOpen ? "fixed" : "hidden"}`}
+      sx={{
+        display: isOpen ? "block" : "none",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        zIndex: 100,
+        backgroundColor: "rgba(0, 0, 0, 0.1)",
+        backdropFilter: "blur(4px)",
+        transition: "opacity 0.5s ease",
+      }}
     >
-      <div className="h-full w-full flex items-center justify-center">
-        <div
+      <Stack
+        sx={{ height: "100%", width: "100%" }}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Box
           onClick={(e) => e.stopPropagation()}
-          className={cn(
-            "modal bg-header w-[350px] max-h-[700px] overflow-y-auto  rounded-md text-foreground",
-            sizeClass,
-            !isOpen ? "hidden" : "block",
-          )}
+          sx={{
+            bgcolor: "background.paper",
+            overflowY: "auto",
+            ...sizeClass,
+          }}
         >
           {children}
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Stack>
+    </Box>
   );
 }
 
@@ -70,24 +87,39 @@ export function Header({
   onClose: () => void;
 }) {
   return (
-    <div className="sticky top-0 left-0 bg-header p-4 md:p-6 !pb-2">
-      <div className="flex justify-between items-center  text-xl md:text-2xl">
-        <h3 className="tracking-wider font-bold">{title}</h3>
-        <ButtonIcon onClick={onClose}>
-          <span>&times;</span>
-        </ButtonIcon>
-      </div>
-      <hr className="my-4 border-foreground-900 dark:border-gray-700" />
-    </div>
+    <Box
+      sx={{
+        position: "sticky",
+        top: 0,
+        left: 0,
+        bgcolor: "background.paper",
+        px: { xs: 2, md: 4 },
+        pt: 4,
+        pb: 2,
+      }}
+    >
+      <Stack justifyContent="space-between" direction="row">
+        <Typography variant="h3">{title}</Typography>
+        <Box
+          component="span"
+          sx={{ cursor: "pointer", fontSize: 24 }}
+          onClick={onClose}
+          aria-label="close"
+        >
+          &times;
+        </Box>
+      </Stack>
+      <Divider sx={{ py: 1 }} flexItem />
+    </Box>
   );
 }
 
 export function Body({ children }: GenericProps) {
-  return <div className="px-4 md:px-6 pb-12">{children}</div>;
+  return <Box sx={{ px: { xs: 2, md: 4 }, pb: 6 }}>{children}</Box>;
 }
 
 export function Footer({ children }: GenericProps) {
-  return <div className="p-4 md:p-6">{children}</div>;
+  return <Box sx={{ px: { xs: 2, md: 4 }, pb: 4 }}>{children}</Box>;
 }
 
 Modal.Header = Header;
