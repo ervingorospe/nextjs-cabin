@@ -5,10 +5,11 @@ import Plus from "@/components/ui/icons/Plus";
 import IconLayout from "@/components/ui/icons/IconLayout";
 import Form from "@/features/room/components/Form";
 import { defaultValue } from "@/features/room/fields";
+import { Box } from "@mui/material";
 
 export default function Header() {
   return (
-    <div>
+    <Box>
       <PageHeader title="Room">
         <PageHeader.Modal
           buttonRender={<span>Add Room</span>}
@@ -21,6 +22,6 @@ export default function Header() {
           ModalTitle="New Room"
         />
       </PageHeader>
-    </div>
+    </Box>
   );
 }

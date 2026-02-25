@@ -72,7 +72,7 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
   if (type === "select") {
     content = ({ field }) => (
       <Select
-        value={field.value || ""}
+        value={field.value?.toLowerCase() ?? ""}
         onChange={field.onChange}
         onBlur={field.onBlur}
       >
@@ -129,7 +129,7 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
           "& .ql-editor::before": {
             color: (theme) => `${theme.palette.secondary.main} !important`,
             opacity: "0.5 !important",
-            fontStyle: "normal", // Optional: MUI inputs usually aren't italic
+            fontStyle: "normal",
           },
           "& .ql-fill, .ql-stroke": {
             color: (theme) => theme.palette.secondary.main,
@@ -142,15 +142,13 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
             borderRadius: "0 0 6px 6px",
             transition: (theme) =>
               theme.transitions.create(["border-color", "box-shadow"]),
-            // Hover State
             "&:hover": {
               borderColor: "text.primary",
             },
-            // Focus/Active State (Targeting the editor within Quill)
             "&.ql-snow.ql-container:focus-within": {
               borderColor: "primary.main",
               borderWidth: "2px",
-              marginTop: "-1px", // Prevents layout shift from 2px border
+              marginTop: "-1px",
             },
           },
         }}

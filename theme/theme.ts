@@ -46,7 +46,7 @@ const theme = extendTheme({
     },
   },
   shape: {
-    borderRadius: 5,
+    borderRadius: "7px",
   },
   components: {
     MuiStack: {

@@ -1,15 +1,26 @@
 "use client";
 
 import { TableHeader, TableHeaderProps } from "@/types/table.type";
+import { styled, TableContainer as MuiTableContainer } from "@mui/material";
+
+const TableContainer = styled(MuiTableContainer)(({ theme }) => ({
+  border: "1px solid",
+  borderColor: theme.vars?.palette.text.primary,
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(2),
+  minWidth: "100%",
+  overflowX: "auto",
+
+  [theme.breakpoints.up("md")]: {
+    overflowY: "visible",
+  },
+}));
 
 function Table({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      id="room-table"
-      className="border border-header rounded-md p-2 min-w-[100%] overflow-x-auto md:overflow-visible"
-    >
+    <TableContainer>
       <table className="w-full">{children}</table>
-    </div>
+    </TableContainer>
   );
 }
 
