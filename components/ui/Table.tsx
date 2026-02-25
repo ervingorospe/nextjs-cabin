@@ -1,7 +1,11 @@
 "use client";
 
 import { TableHeader, TableHeaderProps } from "@/types/table.type";
-import { styled, TableContainer as MuiTableContainer } from "@mui/material";
+import {
+  styled,
+  TableContainer as MuiTableContainer,
+  Table as MuiTable,
+} from "@mui/material";
 
 const TableContainer = styled(MuiTableContainer)(({ theme }) => ({
   border: "1px solid",
@@ -19,7 +23,7 @@ const TableContainer = styled(MuiTableContainer)(({ theme }) => ({
 function Table({ children }: { children: React.ReactNode }) {
   return (
     <TableContainer>
-      <table className="w-full">{children}</table>
+      <MuiTable>{children}</MuiTable>
     </TableContainer>
   );
 }
