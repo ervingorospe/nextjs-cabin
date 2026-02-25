@@ -19,16 +19,13 @@ function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
     [sizes.SMALL]: {
       width: { xs: "350px", md: "500px" },
       maxWidth: "500px",
-      maxHeight: "700px",
     },
     [sizes.MEDIUM]: {
       width: { xs: "350px", md: "700px" },
-      maxHeight: "700px",
       maxWidth: "700px",
     },
     [sizes.LARGE]: {
       width: { xs: "350px", md: "900px" },
-      maxHeight: "700px",
       maxWidth: "900px",
     },
   } as const;
@@ -60,16 +57,17 @@ function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
       }}
     >
       <Stack
-        sx={{ height: "100%", width: "100%" }}
+        sx={{ height: "100%" }}
         justifyContent="center"
         alignItems="center"
       >
         <Box
           onClick={(e) => e.stopPropagation()}
           sx={{
-            borderRadius: "7px",
+            borderRadius: (theme) => theme.shape.borderRadius,
             bgcolor: "background.paper",
             overflowY: "auto",
+            maxHeight: "650px",
             ...sizeClass,
           }}
         >
