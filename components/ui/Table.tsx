@@ -1,7 +1,6 @@
 "use client";
 
 import { TableHeader, TableHeaderProps } from "@/types/table.type";
-import { cn } from "@/utils/styles";
 
 function Table({ children }: { children: React.ReactNode }) {
   return (
@@ -20,10 +19,7 @@ export function THead({ theaders }: TableHeaderProps) {
       <tr className="border-b border-header text-foreground text-lg font-bold tracking-wide">
         {theaders?.map((thead: TableHeader) => (
           <th
-            className={cn(
-              "px-2 border-r border-header last:border-none",
-              thead.className,
-            )}
+            className={`px-2 border-r border-header last:border-none ${thead.className}`}
             key={thead.label}
           >
             {thead.label}
@@ -46,7 +42,7 @@ export function TR({
   className?: string;
 }) {
   return (
-    <tr className={cn("border-b border-header last:border-none", className)}>
+    <tr className={`border-b border-header last:border-none ${className}`}>
       {children}
     </tr>
   );
@@ -61,10 +57,7 @@ export function TD({
 }) {
   return (
     <td
-      className={cn(
-        "px-2 py-2 border-r last:border-none border-header",
-        className,
-      )}
+      className={`px-2 py-2 border-r last:border-none border-header ${className}`}
     >
       {children}
     </td>

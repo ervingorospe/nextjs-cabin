@@ -4,7 +4,7 @@ import { notFound, useSearchParams } from "next/navigation";
 import LeftCaret from "@/components/ui/icons/LeftCaret";
 import RightCaret from "@/components/ui/icons/RightCaret";
 import IconLayout from "@/components/ui/icons/IconLayout";
-import ButtonIcon from "./ButtonIcon";
+import { IconButton } from "@mui/material";
 import usePageQuery from "@/hooks/usePageQuery";
 
 export default function Pagination({ count }: { count: number }) {
@@ -50,13 +50,13 @@ function PaginationTabs({
 
   return (
     <div className="flex items-center justify-end gap-1 text-sm">
-      <ButtonIcon onClick={() => setNext((n) => n - 1)} disabled={next < 1}>
+      <IconButton onClick={() => setNext((n) => n - 1)} disabled={next < 1}>
         <IconLayout
           className={`h-4 w-4 mr-1 ${next < 1 ? "disabled" : "text-secondary cursor-pointer hover:opacity-50"}`}
         >
           <LeftCaret />
         </IconLayout>
-      </ButtonIcon>
+      </IconButton>
       <div className="max-w-[220px] overflow-hidden">
         <div
           className="flex items-center gap-1 transition-transform duration-300 ease-in-out"
@@ -68,7 +68,7 @@ function PaginationTabs({
         </div>
       </div>
 
-      <ButtonIcon
+      <IconButton
         onClick={() => setNext((n) => n + 1)}
         disabled={next === nextCount}
       >
@@ -77,7 +77,7 @@ function PaginationTabs({
         >
           <RightCaret />
         </IconLayout>
-      </ButtonIcon>
+      </IconButton>
     </div>
   );
 }
@@ -97,14 +97,14 @@ const PageNumbers = React.memo(function PageNumbers({
         const pageNum = i + 1;
 
         return (
-          <ButtonIcon
+          <IconButton
             onClick={() => setPage(pageNum)}
             className={`cursor-pointer py-1 w-10 shrink-0 text-center rounded-md border border-secondary ${currentPage === pageNum ? "bg-secondary text-white" : "hover:text-white hover:bg-secondary"}`}
             key={i}
             disabled={currentPage === pageNum}
           >
             {pageNum}
-          </ButtonIcon>
+          </IconButton>
         );
       })}
     </>

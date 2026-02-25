@@ -8,7 +8,6 @@ import Item from "./Item";
 import Modal from "@/components/ui/Modal";
 import IconLayout from "@/components/ui/icons/IconLayout";
 import Warning from "@/components/ui/icons/Warning";
-import Button from "@/components/ui/Button";
 
 import { ListProps } from "@/types/menu.type";
 import { ModalHandle } from "@/types/modal.type";
@@ -17,7 +16,7 @@ import { colors } from "@/types/color.type";
 import type { Room, Action } from "@/features/room/types";
 import { actions } from "@/features/room/types";
 import { theaders } from "@/features/room/constants";
-import { Stack, Typography, Box } from "@mui/material";
+import { Stack, Typography, Button } from "@mui/material";
 
 const Dialog = dynamic(() => import("@/components/ui/Dialog"), { ssr: false });
 

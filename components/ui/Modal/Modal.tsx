@@ -1,18 +1,16 @@
 "use client";
 
-import { GenericProps } from "@/types/generic.type";
 import { Sizes, sizes } from "@/_lib/_types/size.type";
 import { useImperativeHandle, useState } from "react";
 import "@/styles/modal.style.scss";
 import { ModalHandle } from "@/types/modal.type";
 import { Box, Divider, Stack, Typography } from "@mui/material";
 
-interface ModalProps extends GenericProps {
+interface ModalProps {
+  children: React.ReactNode;
   ref: React.Ref<ModalHandle>;
   size?: Sizes;
 }
-
-// fix modal on adding room, background dont have a full width
 
 function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,6 +67,7 @@ function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
         <Box
           onClick={(e) => e.stopPropagation()}
           sx={{
+            borderRadius: "7px",
             bgcolor: "background.paper",
             overflowY: "auto",
             ...sizeClass,
@@ -117,11 +116,11 @@ export function Header({
   );
 }
 
-export function Body({ children }: GenericProps) {
+export function Body({ children }: { children: React.ReactNode }) {
   return <Box sx={{ px: { xs: 2, md: 4 }, pb: 6 }}>{children}</Box>;
 }
 
-export function Footer({ children }: GenericProps) {
+export function Footer({ children }: { children: React.ReactNode }) {
   return <Box sx={{ px: { xs: 2, md: 4 }, pb: 4 }}>{children}</Box>;
 }
 

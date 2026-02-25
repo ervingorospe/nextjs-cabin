@@ -85,7 +85,7 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
     );
   }
 
-  if (type === "price") {
+  if (type === "amount") {
     content = ({ field }) => (
       <OutlinedInput
         value={field.value || ""}
@@ -96,7 +96,7 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
     );
   }
 
-  if (type === "discount") {
+  if (type === "percentage") {
     content = ({ field }) => (
       <OutlinedInput
         value={field.value || ""}

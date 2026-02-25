@@ -1,6 +1,6 @@
 "use client";
 import Modal from "@/components/ui/Modal";
-import Button from "./Button";
+import { Button, Stack } from "@mui/material";
 import { variants } from "@/types/button.type";
 import { colors } from "@/types/color.type";
 import React from "react";
@@ -21,7 +21,7 @@ export default function Dialog({
       <Modal.Header title={title} onClose={onClose} />
       <Modal.Body>{renderDialog}</Modal.Body>
       <Modal.Footer>
-        <div className="flex justify-end gap-4">
+        <Stack direction="row" justifyContent="flex-end">
           <Button
             onClick={onClose}
             variant={variants.OUTLINED}
@@ -30,7 +30,7 @@ export default function Dialog({
             Cancel
           </Button>
           {renderButton}
-        </div>
+        </Stack>
       </Modal.Footer>
     </>
   );

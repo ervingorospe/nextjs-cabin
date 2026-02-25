@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import Modal from "@/components/ui/Modal";
 import { ModalHandle } from "@/types/modal.type";
-import { Stack, Button, ButtonProps } from "@mui/material";
+import { Stack, Button, ButtonProps, Typography } from "@mui/material";
 import { variants } from "@/_lib/_types/button.type";
 
 interface PageHeaderProps {
@@ -18,7 +18,9 @@ function PageHeader({ children, title }: PageHeaderProps) {
       justifyContent="space-between"
       className="flex items-center justify-between w-full mb-8"
     >
-      <h1 className="text-4xl font-bold tracking-wide">{title}</h1>
+      <Typography variant="h1" className="text-4xl font-bold tracking-wide">
+        {title}
+      </Typography>
       {children}
     </Stack>
   );

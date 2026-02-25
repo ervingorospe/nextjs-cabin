@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import Table from "@/components/ui/Table";
 import IconLayout from "@/components/ui/icons/IconLayout";
 import EllipsisVertical from "@/components/ui/icons/EllipsisVertical";
-import ButtonIcon from "@/components/ui/ButtonIcon";
-import Tooltip from "@/components/ui/Tooltip";
+import { IconButton } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import Menu from "@/components/ui/Menu";
 import { ListProps } from "@/types/menu.type";
 import { Room } from "@/features/room/types";
@@ -28,11 +28,11 @@ const RoomItem = React.memo(function RoomList({ room, menuList }: RoomProps) {
       <Table.Td className="w-[50px] text-center">
         <Menu setOpen={setOpen}>
           <Tooltip title="Menu">
-            <ButtonIcon onClick={() => setOpen((open) => !open)}>
+            <IconButton onClick={() => setOpen((open) => !open)}>
               <IconLayout className="h-6 w-8 hover:text-secondary">
                 <EllipsisVertical />
               </IconLayout>
-            </ButtonIcon>
+            </IconButton>
           </Tooltip>
           <Menu.UL
             open={open}
