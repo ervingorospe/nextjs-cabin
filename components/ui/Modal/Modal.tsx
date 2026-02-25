@@ -12,6 +12,8 @@ interface ModalProps extends GenericProps {
   size?: Sizes;
 }
 
+// fix modal on adding room, background dont have a full width
+
 function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,7 +53,7 @@ function Modal({ children, ref, size = sizes.MEDIUM }: ModalProps) {
         position: "fixed",
         top: 0,
         left: 0,
-        width: "100vw",
+        width: "100%",
         height: "100vh",
         zIndex: 100,
         backgroundColor: "rgba(0, 0, 0, 0.1)",
@@ -96,6 +98,7 @@ export function Header({
         px: { xs: 2, md: 4 },
         pt: 4,
         pb: 2,
+        zIndex: 10,
       }}
     >
       <Stack justifyContent="space-between" direction="row">

@@ -36,13 +36,13 @@ export const roomField: FieldConfig[] = [
   {
     name: "price",
     label: "Original Price",
-    type: "number",
+    type: "price",
     width: "Half",
   },
   {
     name: "discount",
     label: "Discount Percentage",
-    type: "number",
+    type: "discount",
     width: "Half",
   },
   {

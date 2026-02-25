@@ -2,6 +2,7 @@
 
 import Warning from "@/components/ui/icons/Warning";
 import IconLayout from "@/components/ui/icons/IconLayout";
+import { Stack, Typography } from "@mui/material";
 
 export default function ErrorMessage({
   message,
@@ -9,12 +10,12 @@ export default function ErrorMessage({
   message: string | undefined;
 }) {
   return (
-    <div className="mt-1 text-sm flex items-center text-red-400">
+    <Stack direction="row" spacing={0} color="warning.main">
       <IconLayout className="mt-[1px] h-4 w-4">
         <Warning />
       </IconLayout>
 
-      <p>{message}</p>
-    </div>
+      <Typography variant="body1">{message}</Typography>
+    </Stack>
   );
 }

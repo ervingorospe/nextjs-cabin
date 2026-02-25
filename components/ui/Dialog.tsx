@@ -24,7 +24,7 @@ export default function Dialog({
         <div className="flex justify-end gap-4">
           <Button
             onClick={onClose}
-            variant={variants.OUTLINE}
+            variant={variants.OUTLINED}
             color={colors.SECONDARY}
           >
             Cancel

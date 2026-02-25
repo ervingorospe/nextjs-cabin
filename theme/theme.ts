@@ -51,9 +51,14 @@ const theme = extendTheme({
   components: {
     MuiStack: {
       defaultProps: {
-        spacing: 2,
+        spacing: 1,
         alignItems: "right",
         alignContent: "center",
+      },
+    },
+    MuiGrid: {
+      defaultProps: {
+        spacing: 1,
       },
     },
     MuiButtonBase: {
