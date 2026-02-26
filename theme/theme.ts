@@ -49,6 +49,46 @@ const theme = extendTheme({
     borderRadius: "7px",
   },
   components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          backgroundColor: theme.vars?.palette.background.paper,
+          backgroundImage: "none",
+
+          ...theme.applyStyles("light", {
+            boxShadow: "3px 3px 7px -3px #c7c8c8",
+          }),
+          ...theme.applyStyles("dark", {
+            boxShadow: "3px 3px 7px -3px #101625",
+          }),
+        }),
+      },
+      defaultProps: {
+        elevation: 0,
+      },
+    },
+    MuiTableRow: {
+      styleOverrides: {
+        root: {
+          "&:last-child td": { borderBottom: 0 },
+        },
+      },
+    },
+    MuiTableCell: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          borderBottom: `1px solid ${theme.vars.palette.text.primary}`,
+          fontSize: 14,
+        }),
+        head: ({ theme }) => ({
+          borderBottom: `1px solid ${theme.vars.palette.text.secondary}`,
+          fontSize: 16, // 14px
+          fontWeight: 600,
+          color: theme.vars?.palette.text.secondary, // or any color
+          textTransform: "uppercase", // optional for dashboard style
+        }),
+      },
+    },
     MuiStack: {
       defaultProps: {
         spacing: 1,

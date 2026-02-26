@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 export default function AuthenticatedLayout({
   children,
@@ -24,9 +24,9 @@ export default function AuthenticatedLayout({
         }}
       >
         <Sidebar />
-        <main className="w-full">
-          <Box className="p-4 sm:p-8 md:p-12 w-full mx-auto">{children}</Box>
-        </main>
+        <Box component="main" sx={{ width: "100%" }}>
+          <Container sx={{ py: 4 }}>{children}</Container>
+        </Box>
       </Box>
     </Box>
   );

@@ -25,7 +25,7 @@ const RoomItem = React.memo(function RoomList({ room, menuList }: RoomProps) {
       <Table.Td>{price}</Table.Td>
       <Table.Td>{discount}</Table.Td>
       <Table.Td>{status}</Table.Td>
-      <Table.Td className="w-[50px] text-center">
+      <Table.Td>
         <Menu setOpen={setOpen}>
           <Tooltip title="Menu">
             <IconButton onClick={() => setOpen((open) => !open)}>
