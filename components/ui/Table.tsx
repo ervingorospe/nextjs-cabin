@@ -5,6 +5,9 @@ import {
   styled,
   TableContainer as MuiTableContainer,
   Table as MuiTable,
+  TableHead,
+  TableRow,
+  TableCell,
 } from "@mui/material";
 
 const TableContainer = styled(MuiTableContainer)(({ theme }) => ({
@@ -30,18 +33,18 @@ function Table({ children }: { children: React.ReactNode }) {
 
 export function THead({ theaders }: TableHeaderProps) {
   return (
-    <thead>
-      <tr className="border-b border-header text-foreground text-lg font-bold tracking-wide">
+    <TableHead>
+      <TableRow>
         {theaders?.map((thead: TableHeader) => (
-          <th
+          <TableCell
             className={`px-2 border-r border-header last:border-none ${thead.className}`}
             key={thead.label}
           >
             {thead.label}
-          </th>
+          </TableCell>
         ))}
-      </tr>
-    </thead>
+      </TableRow>
+    </TableHead>
   );
 }
 
