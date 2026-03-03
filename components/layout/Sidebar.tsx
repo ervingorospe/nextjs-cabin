@@ -7,17 +7,16 @@ import ChevronLeft from "@/components/ui/icons/ChevronLeft";
 import ChevronRight from "@/components/ui/icons/ChevronRight";
 import IconLayout from "@/components/ui/icons/IconLayout";
 import MenuItem from "@/components/layout/MenuItem";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Paper, IconButton, Stack, Typography } from "@mui/material";
 import routes from "@/data/routes";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <Box sx={{ display: { sx: "absolute", md: "relative" }, zIndex: 10 }}>
+    <Paper sx={{ display: { sx: "absolute", md: "relative" }, zIndex: 10 }}>
       <Box
         sx={{ bgcolor: "background.paper", height: "100%", position: "fixed" }}
-        className="shadow-lg"
       >
         <IconButton
           sx={{
@@ -84,7 +83,10 @@ export default function Sidebar() {
         </Box>
       </Box>
 
-      <Box className={`sidebar ${isOpen ? "open" : "close"}`}></Box>
-    </Box>
+      <Paper
+        sx={{ position: { xs: "absolute", md: "relative" } }}
+        className={`sidebar ${isOpen ? "open" : "close"}`}
+      ></Paper>
+    </Paper>
   );
 }

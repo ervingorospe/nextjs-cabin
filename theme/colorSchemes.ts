@@ -64,6 +64,7 @@ export const colorSchemes = {
       text: {
         primary: "#2f426b",
         heading: "#111827",
+        secondary: "#111827",
       },
       background: {
         default: "#edf0f3",
@@ -87,6 +88,7 @@ export const colorSchemes = {
       text: {
         primary: "#8fa2b4",
         heading: "#fff",
+        secondary: "#fff",
       },
       background: {
         default: "#111827",

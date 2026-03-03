@@ -2,11 +2,11 @@
 import Link from "next/link";
 import ThemeSwitch from "@/components/ui/ThemeSwitch";
 import Avatar from "@/components/ui/Avatar";
-import { Box, Stack } from "@mui/material";
+import { Box, Paper, Stack } from "@mui/material";
 
 export default function Header() {
   return (
-    <Box
+    <Paper
       sx={{
         position: "sticky",
         top: 0,
@@ -45,6 +45,6 @@ export default function Header() {
           </Stack>
         </Stack>
       </Box>
-    </Box>
+    </Paper>
   );
 }
