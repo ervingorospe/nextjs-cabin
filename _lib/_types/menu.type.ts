@@ -1,5 +1,9 @@
+import { Colors } from "./color.type";
+
 export interface ListProps {
   label: string;
+  icon: React.ReactNode;
+  color: Colors;
   action?: () => void;
 }
 

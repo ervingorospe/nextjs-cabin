@@ -1,11 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Table from "@/components/ui/Table";
-import IconLayout from "@/components/ui/icons/IconLayout";
-import EllipsisVertical from "@/components/ui/icons/EllipsisVertical";
 import { IconButton } from "@mui/material";
-import { Tooltip } from "@mui/material";
-import Menu from "@/components/ui/Menu";
+import { Stack, Tooltip } from "@mui/material";
 import { ListProps } from "@/types/menu.type";
 import { Room } from "@/features/room/types";
 
@@ -15,7 +12,6 @@ interface RoomProps {
 }
 
 const RoomItem = React.memo(function RoomList({ room, menuList }: RoomProps) {
-  const [open, setOpen] = useState(false);
   const { id, name, price, discount, status } = room;
 
   return (
@@ -26,20 +22,15 @@ const RoomItem = React.memo(function RoomList({ room, menuList }: RoomProps) {
       <Table.Td>{discount}</Table.Td>
       <Table.Td>{status}</Table.Td>
       <Table.Td>
-        <Menu setOpen={setOpen}>
-          <Tooltip title="Menu">
-            <IconButton onClick={() => setOpen((open) => !open)}>
-              <IconLayout className="h-6 w-8 hover:text-secondary">
-                <EllipsisVertical />
-              </IconLayout>
-            </IconButton>
-          </Tooltip>
-          <Menu.UL
-            open={open}
-            lists={menuList}
-            render={(menu: ListProps) => <Menu.LI menu={menu} />}
-          />
-        </Menu>
+        <Stack direction="row">
+          {menuList?.map((menu, idx) => (
+            <Tooltip title={menu.label} key={idx}>
+              <IconButton onClick={menu.action} color={menu.color}>
+                {menu.icon}
+              </IconButton>
+            </Tooltip>
+          ))}
+        </Stack>
       </Table.Td>
     </Table.Tr>
   );

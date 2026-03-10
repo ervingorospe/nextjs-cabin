@@ -3,6 +3,14 @@ import { colorSchemes } from "./colorSchemes";
 import type { Theme } from "@mui/material/styles";
 import type { ButtonProps } from "@mui/material/Button";
 
+declare module "@mui/material/IconButton" {
+  interface IconButtonPropsColorOverrides {
+    accent: true;
+    background: true;
+    foreground: true;
+  }
+}
+
 const theme = extendTheme({
   colorSchemes,
   colorSchemeSelector: "data-mui-color-scheme",
@@ -119,6 +127,9 @@ const theme = extendTheme({
       },
     },
     MuiButton: {
+      defaultProps: {
+        variant: "contained",
+      },
       styleOverrides: {
         root: {
           textTransform: "capitalize",

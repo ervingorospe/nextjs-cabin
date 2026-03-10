@@ -8,6 +8,8 @@ import Item from "./Item";
 import Modal from "@/components/ui/Modal";
 import IconLayout from "@/components/ui/icons/IconLayout";
 import Warning from "@/components/ui/icons/Warning";
+import TrashCan from "@/components/ui/icons/TrashCan";
+import PenToSquare from "@/components/ui/icons/PenToSquare";
 
 import { ListProps } from "@/types/menu.type";
 import { ModalHandle } from "@/types/modal.type";
@@ -32,15 +34,23 @@ export default function RoomList({ rooms }: { rooms: Room[] }) {
   const menuList: ListProps[] = useMemo(
     () => [
       {
-        label: "View/Edit",
+        label: "Edit",
+        icon: (
+          <IconLayout className="h-5 w-5">
+            <PenToSquare />
+          </IconLayout>
+        ),
+        color: colors.PRIMARY,
         action: () => action(actions.VIEW),
       },
       {
-        label: "Available",
-        action: () => action(actions.STATUS),
-      },
-      {
         label: "Delete",
+        icon: (
+          <IconLayout className="h-5 w-5">
+            <TrashCan />
+          </IconLayout>
+        ),
+        color: colors.WARNING,
         action: () => action(actions.DELETE),
       },
     ],

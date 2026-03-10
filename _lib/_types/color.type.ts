@@ -1,4 +1,5 @@
 const colors = {
+  DEFAULT: "primary",
   PRIMARY: "primary",
   SECONDARY: "secondary",
   ACCENT: "accent",
