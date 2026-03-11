@@ -11,7 +11,6 @@ import {
 import {
   Typography,
   Box,
-  TextField,
   Select,
   MenuItem,
   OutlinedInput,
@@ -49,6 +48,9 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
   type,
   placeholder,
   options,
+  startIcon,
+  endIcon,
+  ...rest
 }: FormInputProps<T>) {
   const {
     register,
@@ -60,12 +62,20 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
   let content = <T extends FieldValues>({
     field,
   }: Parameters<ControllerProps<T>["render"]>[0]) => (
-    <TextField
+    <OutlinedInput
       value={field.value || ""}
       type={type}
-      {...register(name, { valueAsNumber: type === "number" })}
-      variant="outlined"
+      {...register(name)}
       placeholder={placeholder}
+      startAdornment={
+        startIcon && (
+          <InputAdornment position="start">{startIcon}</InputAdornment>
+        )
+      }
+      endAdornment={
+        endIcon && <InputAdornment position="end">{endIcon}</InputAdornment>
+      }
+      {...rest}
     />
   );
 
@@ -82,28 +92,6 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
           </MenuItem>
         ))}
       </Select>
-    );
-  }
-
-  if (type === "amount") {
-    content = ({ field }) => (
-      <OutlinedInput
-        value={field.value || ""}
-        type="number"
-        {...register(name, { valueAsNumber: type === "number" })}
-        startAdornment={<InputAdornment position="start">₱</InputAdornment>}
-      />
-    );
-  }
-
-  if (type === "percentage") {
-    content = ({ field }) => (
-      <OutlinedInput
-        value={field.value || ""}
-        type="number"
-        {...register(name, { valueAsNumber: type === "number" })}
-        endAdornment={<InputAdornment position="start">%</InputAdornment>}
-      />
     );
   }
 

@@ -19,6 +19,7 @@ import type { Room, Action } from "@/features/room/types";
 import { actions } from "@/features/room/types";
 import { theaders } from "@/features/room/constants";
 import { Stack, Typography, Button } from "@mui/material";
+import Search from "@/components/ui/Search";
 
 const Dialog = dynamic(() => import("@/components/ui/Dialog"), { ssr: false });
 
@@ -66,7 +67,10 @@ export default function RoomTable({ rooms }: { rooms: Room[] }) {
   };
 
   return (
-    <Stack>
+    <Stack direction="column" spacing={2}>
+      <Stack direction="row">
+        <Search />
+      </Stack>
       <Table>
         <Table.Head theaders={theaders} />
         <Table.Body>
@@ -75,9 +79,7 @@ export default function RoomTable({ rooms }: { rooms: Room[] }) {
           ))}
         </Table.Body>
       </Table>
-
       <Pagination count={rooms.length} />
-
       <Modal ref={modalRef} size={sizes.SMALL}>
         {actionType === "view" ? (
           <p>viewing</p>

@@ -5,6 +5,7 @@ import {
   UseFormReturn,
   SubmitHandler,
 } from "react-hook-form";
+import { OutlinedInputProps } from "@mui/material";
 
 export interface FormProps<
   TInput extends FieldValues,
@@ -21,14 +22,15 @@ export type OptionsProps = {
 };
 
 export interface FormInputProps<T extends FieldValues> extends Omit<
-  React.InputHTMLAttributes<HTMLInputElement>,
+  OutlinedInputProps,
   "name"
 > {
   label?: string;
-  error?: string;
   name: Path<T>;
   placeholder?: string;
   options?: OptionsProps[];
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
 export interface UploadFileProps extends React.FormHTMLAttributes<HTMLInputElement> {

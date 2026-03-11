@@ -1,12 +1,15 @@
 import { OptionsProps } from "@/types/form.type";
 import { RoomDTOInput } from "@/features/room/schema";
+import { OutlinedInputProps } from "@mui/material";
 
-export interface FieldConfig extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface FieldConfig extends OutlinedInputProps {
   name: keyof RoomDTOInput;
   label: string;
-  width: "Full" | "Half"; // 👈 Match the Form.Row prop exactly
+  width: "Full" | "Half";
   type: string;
   options?: OptionsProps[];
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
 export type Room = {

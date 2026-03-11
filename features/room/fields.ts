@@ -7,7 +7,6 @@ export const roomField: FieldConfig[] = [
     label: "Room Name",
     type: "text",
     width: "Full",
-    maxLength: 25,
   },
   {
     name: "bedroom",
@@ -36,14 +35,16 @@ export const roomField: FieldConfig[] = [
   {
     name: "price",
     label: "Original Price",
-    type: "amount",
+    type: "number",
     width: "Half",
+    startIcon: "₱",
   },
   {
     name: "discount",
     label: "Discount Percentage",
-    type: "percentage",
+    type: "number",
     width: "Half",
+    endIcon: "%",
   },
   {
     name: "discount_from",
