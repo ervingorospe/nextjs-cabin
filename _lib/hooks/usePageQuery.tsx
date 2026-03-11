@@ -7,20 +7,21 @@ export default function usePageQuery(paramName: string = "page") {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  let query: unknown = searchParams.get(paramName) ?? "";
+  const rawValue: unknown = searchParams.get(paramName) ?? "";
 
-  if (paramName === "page") {
-    query = Number(searchParams.get(paramName) ?? 1);
-  }
-
+  const query = paramName === "page" ? Number(rawValue ?? 1) : (rawValue ?? "");
+  console.log("testing", query);
   const setQuery = useCallback(
-    (q: unknown) => {
-      if (paramName === "page") {
-        if (Number(q) < 1) return;
-      }
-
+    (value: string | number) => {
       const params = new URLSearchParams(searchParams.toString());
-      params.set(paramName, String(q));
+
+      if (paramName === "page" && Number(value) < 1) return;
+
+      if (value === "" || value === null) {
+        params.delete(paramName);
+      } else {
+        params.set(paramName, String(value));
+      }
 
       router.push(`?${params.toString()}`);
     },

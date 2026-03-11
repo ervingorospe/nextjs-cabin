@@ -1,128 +1,39 @@
 "use client";
-import { useMemo, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import Pagination from "@/components/ui/Pagination";
+import React from "react";
 import Table from "@/components/ui/Table";
-import Item from "./Item";
-
-import Modal from "@/components/ui/Modal";
-import IconLayout from "@/components/ui/icons/IconLayout";
-import Warning from "@/components/ui/icons/Warning";
-import TrashCan from "@/components/ui/icons/TrashCan";
-import PenToSquare from "@/components/ui/icons/PenToSquare";
-
+import { IconButton } from "@mui/material";
+import { Stack, Tooltip } from "@mui/material";
 import { ListProps } from "@/types/menu.type";
-import { ModalHandle } from "@/types/modal.type";
-import { sizes } from "@/types/size.type";
-import { colors } from "@/types/color.type";
-import type { Room, Action } from "@/features/room/types";
-import { actions } from "@/features/room/types";
-import { theaders } from "@/features/room/constants";
-import { Stack, Typography, Button } from "@mui/material";
+import { Room } from "@/features/room/types";
 
-const Dialog = dynamic(() => import("@/components/ui/Dialog"), { ssr: false });
+interface RoomProps {
+  room: Room;
+  menuList: ListProps[];
+}
 
-export default function RoomList({ rooms }: { rooms: Room[] }) {
-  const modalRef = useRef<ModalHandle>(null);
-  const [actionType, setActionType] = useState<Action | null>(null);
-
-  const action = (type: Action) => {
-    modalRef.current?.setOpen();
-    setActionType(type);
-  };
-
-  const menuList: ListProps[] = useMemo(
-    () => [
-      {
-        label: "Edit",
-        icon: (
-          <IconLayout className="h-5 w-5">
-            <PenToSquare />
-          </IconLayout>
-        ),
-        color: colors.PRIMARY,
-        action: () => action(actions.VIEW),
-      },
-      {
-        label: "Delete",
-        icon: (
-          <IconLayout className="h-5 w-5">
-            <TrashCan />
-          </IconLayout>
-        ),
-        color: colors.WARNING,
-        action: () => action(actions.DELETE),
-      },
-    ],
-    [],
-  );
-
-  const displayedRooms = useMemo(() => {
-    return rooms?.slice(0, 20) || [];
-  }, [rooms]);
-
-  const doConfirm = async () => {
-    alert(actionType);
-  };
+const RoomList = React.memo(function RoomList({ room, menuList }: RoomProps) {
+  const { id, name, price, discount, status } = room;
 
   return (
-    <Stack>
-      <Table>
-        <Table.Head theaders={theaders} />
-        <Table.Body>
-          {displayedRooms?.map((room: Room) => (
-            <Item room={room} key={room.id} menuList={menuList} />
+    <Table.Tr>
+      <Table.Td>{id}</Table.Td>
+      <Table.Td>{name}</Table.Td>
+      <Table.Td>{price}</Table.Td>
+      <Table.Td>{discount}</Table.Td>
+      <Table.Td>{status}</Table.Td>
+      <Table.Td>
+        <Stack direction="row">
+          {menuList?.map((menu, idx) => (
+            <Tooltip title={menu.label} key={idx}>
+              <IconButton onClick={menu.action} color={menu.color}>
+                {menu.icon}
+              </IconButton>
+            </Tooltip>
           ))}
-        </Table.Body>
-      </Table>
-
-      <Pagination count={rooms.length} />
-
-      <Modal ref={modalRef} size={sizes.SMALL}>
-        {actionType === "view" ? (
-          <p>viewing</p>
-        ) : (
-          <Dialog
-            title={`${actionType === actions.STATUS ? "Change Status" : "Delete Room"}`}
-            onClose={() => modalRef.current?.setOpen()}
-            renderDialog={
-              <>
-                {actionType === actions.STATUS ? (
-                  <Stack>
-                    <Typography variant="body1">
-                      Are you sure you want to change status?
-                    </Typography>
-                  </Stack>
-                ) : (
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    spacing={1}
-                    color="warning.main"
-                  >
-                    <IconLayout className="h-4 w-4">
-                      <Warning />
-                    </IconLayout>
-
-                    <Typography variant="body1">
-                      Are you sure you want to delete?
-                    </Typography>
-                  </Stack>
-                )}
-              </>
-            }
-            renderButton={
-              actionType === actions.DELETE ? (
-                <Button onClick={doConfirm} color={colors.WARNING}>
-                  Delete
-                </Button>
-              ) : (
-                <Button onClick={doConfirm}>Confirm</Button>
-              )
-            }
-          />
-        )}
-      </Modal>
-    </Stack>
+        </Stack>
+      </Table.Td>
+    </Table.Tr>
   );
-}
+});
+
+export default RoomList;
