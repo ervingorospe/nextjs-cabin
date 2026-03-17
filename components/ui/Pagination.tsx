@@ -4,7 +4,7 @@ import { notFound, useSearchParams } from "next/navigation";
 import LeftCaret from "@/components/ui/icons/LeftCaret";
 import RightCaret from "@/components/ui/icons/RightCaret";
 import IconLayout from "@/components/ui/icons/IconLayout";
-import { IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import usePageQuery from "@/hooks/usePageQuery";
 
 export default function Pagination({ count }: { count: number }) {
@@ -94,14 +94,36 @@ const PageNumbers = React.memo(function PageNumbers({
         const pageNum = i + 1;
 
         return (
-          <button
+          <Box
+            component="button"
+            sx={{
+              cursor: "pointer",
+              py: 0.5,
+              width: 40,
+              flexShrink: 0,
+              textAlign: "center",
+              borderRadius: 1,
+              border: "1px solid",
+              borderColor: "secondary.main",
+              ...(currentPage === pageNum
+                ? {
+                    bgcolor: "secondary.main",
+                    color: "common.white",
+                  }
+                : {
+                    color: "text.primary",
+                    "&:hover": {
+                      bgcolor: "secondary.main",
+                      color: "common.white",
+                    },
+                  }),
+            }}
             onClick={() => setPage(pageNum)}
-            className={`cursor-pointer py-1 w-10 shrink-0 text-center rounded-md border border-secondary ${currentPage === pageNum ? "bg-secondary text-white" : "hover:text-white hover:bg-secondary"}`}
             key={i}
             disabled={currentPage === pageNum}
           >
             {pageNum}
-          </button>
+          </Box>
         );
       })}
     </>
