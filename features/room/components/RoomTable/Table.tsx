@@ -66,7 +66,13 @@ export default function RoomTable({
   );
 
   const displayedRooms = useMemo(() => {
-    return rooms?.slice(0, 20) || [];
+    return (
+      rooms?.slice(0, 20).map((room) => ({
+        ...room,
+        price: `₱${room.price}`,
+        discount: `${room.discount}%`,
+      })) || []
+    );
   }, [rooms]);
 
   const doConfirm = async () => {

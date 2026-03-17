@@ -15,8 +15,8 @@ export interface FieldConfig extends OutlinedInputProps {
 export type Room = {
   id: string | number;
   name: string;
-  price: number;
-  discount: number;
+  price: number | string;
+  discount: number | string;
   status: string;
 };
 
