@@ -22,9 +22,8 @@ export default async function Room({ searchParams }: Props) {
   const page = Number(params.page ?? 1);
   const search = params.search ?? "";
   const status = params.status ?? "";
-  const order = params.order ?? "asc";
 
-  console.log("page", page, search, status, order);
+  console.log("page", page, search, status);
 
   return (
     <div>

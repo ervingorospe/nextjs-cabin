@@ -40,7 +40,13 @@ export default function RoomForm({ data }: { data: RoomDTO }) {
   };
 
   return (
-    <Form methods={methods} onSubmit={onSubmit}>
+    <Form
+      methods={methods}
+      onSubmit={onSubmit}
+      useFlexGap
+      direction="row"
+      flexWrap="wrap"
+    >
       {roomField?.map((field: FieldConfig) => (
         <Form.Row width={field.width} key={field.name}>
           <Form.Input {...field} />

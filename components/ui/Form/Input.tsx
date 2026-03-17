@@ -67,6 +67,7 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
       type={type}
       {...register(name)}
       placeholder={placeholder}
+      {...rest}
       startAdornment={
         startIcon && (
           <InputAdornment position="start">{startIcon}</InputAdornment>
@@ -75,7 +76,6 @@ const FormInput = React.memo(function FormInput<T extends FieldValues>({
       endAdornment={
         endIcon && <InputAdornment position="end">{endIcon}</InputAdornment>
       }
-      {...rest}
     />
   );
 

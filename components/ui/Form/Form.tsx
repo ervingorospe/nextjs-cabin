@@ -12,12 +12,9 @@ export default function Form<
     <FormProvider {...methods}>
       <Stack
         component="form"
-        useFlexGap
-        direction="row"
-        flexWrap="wrap"
         sx={{ width: "100%", zIndex: 0 }}
-        {...rest}
         onSubmit={methods.handleSubmit(onSubmit)}
+        {...rest}
       >
         {children}
       </Stack>

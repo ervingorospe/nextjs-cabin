@@ -20,6 +20,7 @@ import { actions } from "@/features/room/types";
 import { theaders } from "@/features/room/constants";
 import { Stack, Typography, Button } from "@mui/material";
 import Search from "@/components/ui/Search";
+import StatusFilter from "@/features/room/components/StatusFilter";
 
 const Dialog = dynamic(() => import("@/components/ui/Dialog"), { ssr: false });
 
@@ -68,8 +69,9 @@ export default function RoomTable({ rooms }: { rooms: Room[] }) {
 
   return (
     <Stack direction="column" spacing={2}>
-      <Stack direction="row">
+      <Stack direction={{ xs: "column", md: "row" }}>
         <Search />
+        <StatusFilter />
       </Stack>
       <Table>
         <Table.Head theaders={theaders} />

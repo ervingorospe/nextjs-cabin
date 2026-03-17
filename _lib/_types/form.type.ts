@@ -5,12 +5,12 @@ import {
   UseFormReturn,
   SubmitHandler,
 } from "react-hook-form";
-import { OutlinedInputProps } from "@mui/material";
+import { OutlinedInputProps, StackProps } from "@mui/material";
 
 export interface FormProps<
   TInput extends FieldValues,
   TOutput extends FieldValues,
-> extends Omit<React.FormHTMLAttributes<HTMLFormElement>, "onSubmit"> {
+> extends Omit<StackProps, "onSubmit" | "children"> {
   children: React.ReactNode;
   methods: UseFormReturn<TInput, unknown, TOutput>; // Link Input and Output
   onSubmit: SubmitHandler<TOutput>; // Handler receives the Output

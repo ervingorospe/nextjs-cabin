@@ -5,14 +5,22 @@ import { useForm } from "react-hook-form";
 import { IconButton } from "@mui/material";
 import MagnifyingGlass from "@/components/ui/icons/MagnifyingGlass";
 import IconLayout from "@/components/ui/icons/IconLayout";
+import usePageQuery from "@/hooks/usePageQuery";
 
 export default function Search() {
-  const methods = useForm({
+  const { query, setQuery } = usePageQuery("search");
+
+  const methods = useForm<{ search: string }>({
     mode: "onChange",
+    defaultValues: {
+      search: typeof query === "string" ? query : "",
+    },
   });
-  const onSubmit = () => {
-    alert("testing");
+
+  const onSubmit = (data: { search: string }) => {
+    setQuery(data.search);
   };
+
   return (
     <Form methods={methods} onSubmit={onSubmit}>
       <Form.Input

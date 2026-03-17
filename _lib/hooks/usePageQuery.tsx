@@ -10,7 +10,7 @@ export default function usePageQuery(paramName: string = "page") {
   const rawValue: unknown = searchParams.get(paramName) ?? "";
 
   const query = paramName === "page" ? Number(rawValue ?? 1) : (rawValue ?? "");
-  console.log("testing", query);
+
   const setQuery = useCallback(
     (value: string | number) => {
       const params = new URLSearchParams(searchParams.toString());

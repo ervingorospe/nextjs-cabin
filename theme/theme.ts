@@ -57,6 +57,26 @@ const theme = extendTheme({
     borderRadius: "7px",
   },
   components: {
+    MuiToggleButton: {
+      defaultProps: {
+        size: "small",
+      },
+      styleOverrides: {
+        root: {
+          textTransform: "capitalize",
+        },
+      },
+    },
+    MuiToggleButtonGroup: {
+      defaultProps: {
+        size: "small",
+      },
+    },
+    MuiOutlinedInput: {
+      defaultProps: {
+        size: "small",
+      },
+    },
     MuiPaper: {
       styleOverrides: {
         root: ({ theme }) => ({
