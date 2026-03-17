@@ -62,9 +62,21 @@ const theme = extendTheme({
         size: "small",
       },
       styleOverrides: {
-        root: {
+        root: ({ theme }) => ({
           textTransform: "capitalize",
-        },
+          "&.Mui-selected": {
+            backgroundColor: theme.vars?.palette.secondary.main,
+            color: theme.vars?.palette.secondary.contrastText,
+            "&:hover": {
+              backgroundColor: theme.vars?.palette.secondary.main,
+              color: theme.vars?.palette.secondary.contrastText,
+            },
+          },
+          "&:hover": {
+            backgroundColor: theme.vars?.palette.secondary.main,
+            color: theme.vars?.palette.secondary.contrastText,
+          },
+        }),
       },
     },
     MuiToggleButtonGroup: {
