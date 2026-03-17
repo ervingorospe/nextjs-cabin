@@ -24,7 +24,13 @@ import StatusFilter from "@/features/room/components/StatusFilter";
 
 const Dialog = dynamic(() => import("@/components/ui/Dialog"), { ssr: false });
 
-export default function RoomTable({ rooms }: { rooms: Room[] }) {
+export default function RoomTable({
+  rooms,
+  total,
+}: {
+  rooms: Room[];
+  total: number;
+}) {
   const modalRef = useRef<ModalHandle>(null);
   const [actionType, setActionType] = useState<Action | null>(null);
 
@@ -81,7 +87,7 @@ export default function RoomTable({ rooms }: { rooms: Room[] }) {
           ))}
         </Table.Body>
       </Table>
-      <Pagination count={rooms.length} />
+      <Pagination count={total} />
       <Modal ref={modalRef} size={sizes.SMALL}>
         {actionType === "view" ? (
           <p>viewing</p>

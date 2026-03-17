@@ -17,7 +17,7 @@ export default function Pagination({ count }: { count: number }) {
     notFound();
   }
 
-  let totalNext = Math.floor(totalPages / 5);
+  let totalNext = totalPages > 5 ? Math.floor(totalPages / 5) : 0;
   const calculatedNext = Math.floor((currentPage - 1) / 5);
 
   if (totalPages % 5 === 0 && totalNext > 0) {
@@ -27,10 +27,7 @@ export default function Pagination({ count }: { count: number }) {
   return (
     <div className="flex-inline md:flex justify-between items-center gap-2">
       <p className="text-right md:text-left">Total Results: {count} items</p>
-      <PaginationTabs
-        nextCount={totalNext || totalPages < 5}
-        calculatedNext={calculatedNext}
-      >
+      <PaginationTabs nextCount={totalNext} calculatedNext={calculatedNext}>
         <PageNumbers totalPages={totalPages} currentPage={currentPage} />
       </PaginationTabs>
     </div>
@@ -97,14 +94,14 @@ const PageNumbers = React.memo(function PageNumbers({
         const pageNum = i + 1;
 
         return (
-          <IconButton
+          <button
             onClick={() => setPage(pageNum)}
             className={`cursor-pointer py-1 w-10 shrink-0 text-center rounded-md border border-secondary ${currentPage === pageNum ? "bg-secondary text-white" : "hover:text-white hover:bg-secondary"}`}
             key={i}
             disabled={currentPage === pageNum}
           >
             {pageNum}
-          </IconButton>
+          </button>
         );
       })}
     </>

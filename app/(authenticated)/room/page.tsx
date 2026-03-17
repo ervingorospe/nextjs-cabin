@@ -30,7 +30,7 @@ export default async function Room({ searchParams }: Props) {
       <Header />
       <Suspense fallback={null}>
         {sampleData?.length > 0 ? (
-          <RoomTable rooms={sampleData} />
+          <RoomTable rooms={sampleData} total={30} />
         ) : (
           <EmptyList message="No Room Added, Click Add Room to Get Started." />
         )}
